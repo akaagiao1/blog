@@ -1,0 +1,23 @@
+created: 20230901154502572
+creator: TidGi User
+modified: 20230901160216733
+modifier: TidGi User
+title: cf节点
+
+!! 如何最快速度搭建cf节点
+
+xui建立vless加ws或者vmess加ws的节点。
+
+接着准备域名添加2级代理，绑定自己的vpsip；
+打开小云朵，
+
+打开，使用xui搭建节点，端口号选择80 8080或者8880
+
+复制节点链接到工具中
+
+替换掉ip为套小黄云的域名
+
+成功
+
+
+

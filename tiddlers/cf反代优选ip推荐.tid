@@ -1,0 +1,10 @@
+created: 20230901153725952
+creator: TidGi User
+modified: 20230901154454892
+modifier: TidGi User
+tags: 节点搭建使用心得
+title: cf反代优选ip推荐
+
+cf是cloundflare 的简称；现在某tg大佬每天都会扫描一些ip我们可以结合不良林的脚本进行完美的优选IP。
+首选要打开找到大佬的[[tg频道链接|https://t.me/cf_push ]]
+随便下载几个端口，我建议用阿里云的ASN`45102`他家的IP是最快的一般；接着搭建自己的[[cf节点]]
