@@ -1,0 +1,10 @@
+created: 20230901123206670
+creator: TidGi User
+modified: 20230901123348252
+modifier: TidGi User
+tags: 新手指南
+title: 指南一
+
+[img[a63623d3cf0cd7bd41f4f6a32a73a71a.png]]
+
+这个问题是我们缺少js文件导致的，只需要找到原tiddlywiki地址，导出.td文件，在导入我们太微里就行。
