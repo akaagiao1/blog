@@ -1,7 +1,7 @@
 created: 20230104152413814
 creator: 林一二
 icon: 🧸
-modified: 20230901122958761
+modified: 20230901131353806
 modifier: TidGi User
 page-cover: https://source.unsplash.com/random
 title: Index
@@ -25,3 +25,5 @@ type: text/vnd.tiddlywiki
 !! 学习和玩耍
 
 Visit [[教程 (Chinese)|https://tw-cn.netlify.app/]] or [[Official Site (English)|https://tiddlywiki.com/]] to learn.
+
+多看看中文教程，里面的插件和脚本照猫画虎就可以搞出来。

@@ -1,0 +1,12 @@
+created: 20230901124639563
+creator: TidGi User
+modified: 20230901124857100
+modifier: TidGi User
+tags: 新手指南
+title: 指南2
+
+当遇到明明更新插件成功但是推出打开之后，仍提示要更新，
+
+步骤
+
+打开文件夹-找到该插件.meta，删除重启服务器就行
