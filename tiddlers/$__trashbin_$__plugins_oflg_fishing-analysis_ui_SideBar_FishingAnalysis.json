@@ -1,0 +1,6 @@
+{
+    "title": "$:/plugins/oflg/fishing-analysis/ui/SideBar/FishingAnalysis",
+    "caption": "{{$:/language/fishing-analysis/analysis}}",
+    "tags": "$:/tags/SideBar",
+    "text": "<div\n    class=\"tc-more-sidebar\"\n>\n    <$macrocall\n        $name=\"tabs\"\n        tabsList=\"[all[shadows+tiddlers]tag[$:/tags/SideBar/FishingAnalysis]!is[draft]]\"\n        default={{{ [all[shadows+tiddlers]tag[$:/tags/SideBar/FishingAnalysis]!is[draft]first[]] }}}\n        state=\"$:/state/tab/fishing-analysis\"\n        class=\"tc-vertical tc-sidebar-tabs-more\"\n        explicitState=\"$:/state/tab/fishing-analysis\"\n    />\n</div>\n"
+}

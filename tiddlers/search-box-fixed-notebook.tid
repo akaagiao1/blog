@@ -1,0 +1,118 @@
+created: 20230902032730632
+creator: TidGi User
+modified: 20230902032730632
+modifier: TidGi User
+tags: $:/tags/Stylesheet
+title: search-box-fixed-notebook
+
+<$reveal state="$:/config/gumo-customisation/search-box-fixed-notebook" type="match" text="show">
+/* Hide subtitle */
+/*
+.tc-subtitle{
+display:none;
+}
+*/
+/* List */
+
+ol li{
+padding-block: 0.5em;
+}
+
+/*
+Tiddler title icon
+*/
+
+.tc-tiddler-title-icon {
+	display: inline-grid;
+}
+
+/*
+Float
+*/
+
+.tc-tiddler-controls.float-right{
+float:right;
+}
+
+.tc-tiddler-controls.float-left{
+float:left;
+}
+
+/*
+Tweaks Notebook theme
+*/
+
+.nc-topbar-wrapper .left{
+    display: flex;
+    gap: 0.5ch;
+		position:relative;
+}
+
+.nc-topbar-wrapper .left .tc-page-controls{
+  display: inline-grid;
+  place-content: center;
+}
+
+.nc-topbar-wrapper .left .tc-block-dropdown-wrapper {
+		position:absolute;
+		left:30px;
+		top:35px;
+}
+.search-field {
+	width: 100%;
+	display:flex;
+	gap:.5ch;
+	align-items: center;
+	flex-wrap:wrap;
+}
+.search-field input[type="text"]{
+	flex:1;
+	margin: 4px 0 4px 0;
+	padding: 3px 3px 3px 3px;
+	border: 1px solid <<colour tiddler-editor-border>>;
+	line-height: 1.3em;
+	font-family: {{$:/themes/tiddlywiki/vanilla/settings/editorfontfamily}};
+}
+.search-field .tc-image-button{
+height:1em;
+}
+.search-field .tc-btn-invisible{
+display:grid;
+}
+
+.search-field > p {
+	width: 100%;
+	display: flex;
+	gap:inherit;
+	margin:0;
+	align-items: center;
+}
+
+/* Notebook theme tweak */
+
+.nc-topbar>.left{
+flex:1;
+display:flex;
+margin-right:1ch;
+}
+
+.nc-topbar>.left .tc-keyboard,
+.content.search .tc-keyboard{
+flex:1;
+}
+
+.nc-topbar>.left>.tc-keyboard *,
+.nc-topbar input[type="search"]:focus,
+.content.search .tc-keyboard *{
+width:100%;
+}
+
+.content.search{
+display:flex;
+gap: 1ch;
+}
+
+.content.search *{
+margin:0;
+}
+</$reveal>
