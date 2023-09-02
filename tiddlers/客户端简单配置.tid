@@ -1,0 +1,323 @@
+created: 20230902134710524
+creator: TidGi User
+modified: 20230902142424929
+modifier: TidGi User
+tags: sing-box
+title: 客户端简单配置
+
+! Mac os推荐设置
+
+[img[https://github.com/akaagiao1/testpicture/blob/main/singbox/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/image.png?raw=true]]
+
+!! 翻译
+[img[https://github.com/akaagiao1/testpicture/blob/main/singbox/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/image%201.png?raw=true]]
+
+
+如何配置自己的sing-box
+
+!! 首先打开转换链接
+
+确定配置方式
+
+!!! 1自己docker搭建；打开如下链接
+
+https://github.com/xmdhs/clash2sfa
+
+!!! 2.用我提供的
+
+https://tart-fiann-2434114819.koyeb.app/
+
+>我和作者一样用koyeb搭建的；数据啥的按不会搞，那天我删了别怪我
+
+
+!!! 开始配置
+
+!!! 默认模版
+
+如下：
+[img[https://github.com/akaagiao1/testpicture/blob/main/singbox/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/image%202.png?raw=true]]
+
+
+`链接格式一定要是clash格式的`；
+
+
+1. 把链接在浏览器点开看是否有效
+
+[img[https://github.com/akaagiao1/testpicture/blob/main/singbox/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/image%203.png?raw=true]]
+
+有如上代表配置`正确`
+
+用作者默认的只有urltest，和节点；而且dns解锁的节点看不了网飞；推荐自定义模版
+
+!!! 自定义模版
+
+> 如我下面的配置模版；我加上了知名流媒体网飞和迪士尼🤭还有fakeip-网会快点
+
+[img[https://github.com/akaagiao1/testpicture/blob/main/singbox/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/image%204.png?raw=true]]
+
+2. 首先下载配置模版
+
+https://raw.githubusercontent.com/akaagiao1/testpicture/main/singbox/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/abc_%E5%89%AF%E6%9C%AC.json
+
+3. 把netflix和disney节点（新加坡 01新加坡 02）替换成自己机场节点的名称（如花云的🇭🇰香港实验性01 🇸🇬新加坡实验性01）；
+
+4. 接着上传到github里（注意仓库要公开；不然会失败）
+
+5. 接着把GitHub的json以raw的格式导入到配置文件模版
+
+如下
+[img[https://github.com/akaagiao1/testpicture/blob/main/singbox/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/image%205.png?raw=true]]
+
+得到链接
+
+上图最下面就是
+
+打开sing-box；以mac os上的sing-boxapp为例；
+
+找到profiles；接着点+
+
+[img[https://github.com/akaagiao1/testpicture/blob/main/singbox/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/image%206.png?raw=true]]
+
+name随便填写；type选择Remote;url填转换后的，点击create
+
+[img[https://github.com/akaagiao1/testpicture/blob/main/singbox/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/image%207.png?raw=true]]
+
+看到`grpup`代表你成功了
+
+[img[https://github.com/akaagiao1/testpicture/blob/main/singbox/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/image%208.png?raw=true]]
+
+你也可以使用clash在线面板来控制节点
+
+如
+
+[https://yacd.metacubex.one/](https://yacd.metacubex.one/)
+
+[http://clash.metacubex.one/#/proxies](http://clash.metacubex.one/#/proxies)
+
+[http://clash.razord.top/](http://clash.razord.top/)
+
+!  拓展
+
+!! 如何分流自己想要的规则和`策略组`
+
+例如我要加上google的分流
+
+!!! 在route-rule下复制
+
+（这个相当于分流规则）
+
+```
+  {
+    "geosite": "google",
+    "outbound": "google"
+  },
+```
+
+
+!!! 插入到下面代码的上面
+
+```
+            {
+                "geosite": "netflix",
+                "outbound": "netflix"
+            },
+```
+
+
+此链接是geosite支持的网站
+
+[https://github.com/v2fly/domain-list-community/tree/master/data](https://github.com/v2fly/domain-list-community/tree/master/data)
+
+sing-box除了支持geosite外还支持多种路由规则；在[https://sing-box.sagernet.org/zh/configuration/route/rule/](https://sing-box.sagernet.org/zh/configuration/route/rule/)链接查看
+
+!!! 在outbounds加上
+
+（这个相当于策略组）
+
+```
+        {
+            "tag": "google",
+            "type": "selector",
+            "outbounds": [
+                "机场节点 名称01",
+                "机场节点 名称02"
+            ]          
+        },
+
+```
+
+
+🐖：要是添加多个节点，记得最后个节点无英文逗号
+
+
+!! 注意
+
+"outbound": "google"对应"tag"中的"google",
+
+（tag里的就相当于你策略组的名字；outbound里的google就是你策略组的名字）
+
+!! 如何添加自己的节点
+
+> 自己vps搭建的节点，如何加上去。
+
+!!! 在outbounds里加上自己的节点
+
+```
+"outbounds": [
+    {
+        "tag": "香港vless",
+        "type": "vless",
+        .....
+    },
+    {
+        "tag": "美国vmess",
+        "type": "vmess",
+        ......
+    },
+    {
+        "tag": "日本ss",
+        "type": "shadowsocks",
+        ......
+    },
+    {
+        "default": "香港vless",
+        "outbounds": [
+            "香港vless",
+            "美国vmess",
+            "日本ss"
+        ],
+        "tag": "全部节点",
+        "type": "selector"
+    },
+    {
+        "default": "香港vless",
+        "outbounds": [
+            "香港vless"
+        ],
+        "tag": "流媒体节点",
+        "type": "selector"
+    },
+    {
+        "tag": "direct",
+        "type": "direct"
+    },
+    {
+        "tag": "block",
+        "type": "block"
+    },
+    {
+        "tag": "dns-out",
+        "type": "dns"
+    }
+],
+```
+
+
+!!!! 上述代码剖析
+
+这块就是对应clash的策略组
+
+```
+{
+"default": "香港vless",
+"outbounds": [
+"香港vless",
+"美国vmess",
+"日本ss"
+],
+"tag": "全部节点",
+"type": "selector"
+},
+
+```
+
+
+这块对应的就是节点
+
+```
+{
+    "tag": "香港vless",
+    "type": "vless",
+    .....
+},
+{
+    "tag": "美国vmess",
+    "type": "vmess",
+    ......
+},
+{
+    "tag": "日本ss",
+    "type": "shadowsocks",
+    ......
+},
+```
+
+
+这个tag就是节点的名字
+
+! 举例2：
+
+!!  现在假如我想加个telegram的分流我就可以在配置里这个样加
+
+!!!  outbound（出站）里配置：
+
+```
+{
+"default": "香港vless",
+"outbounds": [
+"香港vless",
+"美国vmess",
+"日本ss"
+],
+"tag": "telegram",
+"type": "selector"
+},
+```
+
+
+default就是默认那个节点
+
+```
+香港vless",
+"美国vmess",
+"日本ss"
+```
+
+
+outbound下方节点里任意一个都行
+
+!!! 再在route-rule里加上
+
+```
+      {
+        "geoip": "telegram",
+        "geosite": "telegram",
+        "outbound": "telegram"
+      },
+```
+
+
+这个outbound就是策略组tag里的telegram
+
+! 补充资料
+
+更多配置详见
+
+! 建议
+
+相信想用sing-box多少都是有点基础的
+
+多看点配置模版和文档；学会调教sing-box而不是让sing-box 调教你
+
+[config (3).json](https://flowus.cn/preview/e7934fe4-15aa-4097-bd3c-db1ad803f4ec)
+
+[sfi (2).json](https://flowus.cn/preview/5310583e-7576-49fb-b812-708889fc6068)
+
+[https://github.com/Shiyuu2233/shiyuu_sub](https://github.com/Shiyuu2233/shiyuu_sub)
+
+!  感谢
+
+[https://github.com/xmdhs/clash2singbox](https://github.com/xmdhs/clash2singbox)
+
+
+

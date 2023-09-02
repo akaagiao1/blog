@@ -1,0 +1,18 @@
+caption: 修改编辑字体大小-CodeMirror版本
+code-body: yes
+created: 20230902135200427
+creator: TidGi User
+modified: 20230902135210654
+modifier: TidGi User
+tags: $:/tags/Stylesheet
+title: $:/plugins/mabuqian/gumo-customisation/edit-font-size-CodeMirror
+type: text/vnd.tiddlywiki
+
+<$reveal state="$:/config/gumo-customisation/edit-font-size-CodeMirror" type="match" text="show">
+.CodeMirror-lines {
+    cursor: text;
+    min-height: 5em;
+    font-size: 15px;
+    line-height: 20px;
+}
+</$reveal>
