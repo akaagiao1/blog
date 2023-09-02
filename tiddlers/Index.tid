@@ -1,6 +1,6 @@
 created: 20230104152413814
 creator: 林一二
-modified: 20230902145042782
+modified: 20230902150224113
 modifier: TidGi User
 tags: 
 title: Index
@@ -19,6 +19,11 @@ type: text/vnd.tiddlywiki
 Visit [ext[教程 (Chinese)|https://tw-cn.netlify.app/]] or [ext[Official Site (English)|https://tiddlywiki.com/]] to learn.
 
 多看看中文教程，里面的插件和脚本照猫画虎就可以搞出来。
+
+!! 好好学习！天天向上！
+
+<<reuse-tiddler "技术分享">>
+
 
 {{$:/config/oeyoews/info}}
 
