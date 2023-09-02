@@ -1,9 +1,9 @@
-created: 20230901144008078
+created: 20230902003145317
 creator: TidGi User
-modified: 20230902010207872
+modified: 20230902010144904
 modifier: TidGi User
 tags: $:/tags/Stylesheet
-title: 新条目
+title: $:/themes/tiddlywiki/starlight/styles.tid
 
 html body, .tc-sidebar-scrollable-backdrop {
 	font-family: "Arvo","LXGW WenKai Lite", "Times";

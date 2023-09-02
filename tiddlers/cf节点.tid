@@ -1,12 +1,14 @@
 created: 20230901154502572
 creator: TidGi User
-modified: 20230901160216733
+modified: 20230902024902533
 modifier: TidGi User
 title: cf节点
 
 !! 如何最快速度搭建cf节点
 
 xui建立vless加ws或者vmess加ws的节点。
+
+``bash <(curl -Ls  https://raw.githubusercontent.com/qist/xray-ui/main/install.sh)``
 
 接着准备域名添加2级代理，绑定自己的vpsip；
 打开小云朵，

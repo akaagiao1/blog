@@ -1,16 +1,12 @@
 created: 20230104152413814
 creator: 林一二
-icon: 🧸
-modified: 20230901160326533
+modified: 20230902022837448
 modifier: 最可乐
-page-cover: https://source.unsplash.com/random
 tags: 
 title: Index
 type: text/vnd.tiddlywiki
 
 <$echarts $tiddler="$:/plugins/Gk0Wk/echarts/addons/TagCloud.js"/>
-
-<$echarts $tiddler="TheBrain2level.js"/>
 
 
 <<reuse-tiddler "$:/plugins/linonetwo/intention-tower-knowledge-graph/ViewTemplate/PriorityTaskDynamicTable">>
