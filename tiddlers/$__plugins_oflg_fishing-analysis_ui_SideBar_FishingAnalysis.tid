@@ -1,0 +1,20 @@
+caption: {{$:/language/fishing-analysis/analysis}}
+created: 20230902143451161
+creator: TidGi User
+modified: 20230902143453949
+modifier: TidGi User
+tags: 
+title: $:/plugins/oflg/fishing-analysis/ui/SideBar/FishingAnalysis
+
+<div
+    class="tc-more-sidebar"
+>
+    <$macrocall
+        $name="tabs"
+        tabsList="[all[shadows+tiddlers]tag[$:/tags/SideBar/FishingAnalysis]!is[draft]]"
+        default={{{ [all[shadows+tiddlers]tag[$:/tags/SideBar/FishingAnalysis]!is[draft]first[]] }}}
+        state="$:/state/tab/fishing-analysis"
+        class="tc-vertical tc-sidebar-tabs-more"
+        explicitState="$:/state/tab/fishing-analysis"
+    />
+</div>
