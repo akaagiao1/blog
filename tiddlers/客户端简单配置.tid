@@ -1,9 +1,11 @@
 created: 20230902134710524
 creator: TidGi User
-modified: 20230902142424929
+modified: 20230902153526877
 modifier: TidGi User
 tags: sing-box
 title: 客户端简单配置
+
+> Remote 在sing-box各个[[客户端|https://sing-box.sagernet.org/zh/installation/clients/specification/]]均支持所以该教程适用所有sing-box客户端
 
 ! Mac os推荐设置
 
@@ -17,7 +19,11 @@ title: 客户端简单配置
 
 !! 首先打开转换链接
 
-确定配置方式
+`确定配置方式-------搭建clash链接转换sing-box平台
+
+方法一，搭建网页端教学链接除了网页端还有命令行端；详见链接
+方法二，直接调用网页端`
+
 
 !!! 1自己docker搭建；打开如下链接
 
@@ -33,6 +39,8 @@ https://tart-fiann-2434114819.koyeb.app/
 !!! 开始配置
 
 !!! 默认模版
+
+>最快出配置；缺点是没有流媒体分流
 
 如下：
 [img[https://github.com/akaagiao1/testpicture/blob/main/singbox/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/image%202.png?raw=true]]
