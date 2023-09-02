@@ -1,6 +1,0 @@
-{
-    "title": "$:/plugins/linonetwo/tw-mobile-sync/ui/ControlPanel/Settings",
-    "caption": "MobileSync",
-    "tags": "$:/tags/ControlPanel/SettingsTab",
-    "text": "These settings let you customise the behaviour of TW-MobileSync plugin.\n\n---\n\n!! Sync\n\n\n!!! Sync Interval\n\nNormally, sync happened in local wiki, so it is free, so you can sync it frequently. This setting takes effect after refresh.\n\nMinutes between sync:\n\n<$edit-text\n\ttiddler=\"$:/plugins/linonetwo/tw-mobile-sync/Config/SyncInterval\"\n\tfield=\"text\"\n\tdefault=\"3\"\n\ttabindex=-1\n\tfocus=false\n\tcancelPopups=\"yes\"\n\tfileDrop=no\n\ttag=\"input\"\n/>\n"
-}

@@ -1,6 +1,6 @@
 created: 20230104152413814
 creator: 林一二
-modified: 20230902033648710
+modified: 20230902035625807
 modifier: TidGi User
 tags: 
 title: Index
@@ -8,19 +8,12 @@ type: text/vnd.tiddlywiki
 
 <$echarts $tiddler="$:/plugins/Gk0Wk/echarts/addons/TagCloud.js"/>
 
-
-<<reuse-tiddler "$:/plugins/linonetwo/intention-tower-knowledge-graph/ViewTemplate/PriorityTaskDynamicTable">>
-
-<$echarts $tiddler="$:/plugins/Gk0Wk/echarts/addons/GitHubHeatMap.js"  $height="200px" subfilter="[!is[shadow]!is[system]!field:calendarEntry[yes]]" />
+<$echarts $tiddler="$:/plugins/Gk0Wk/echarts/addons/GitHubHeatMap.js" $height="200px" subfilter="[!is[shadow]!is[system]!field:calendarEntry[yes]]"/>
 
 注意[[早睡早起]]
 
-<<reuse-tiddler "最近一年熬夜的天数">>
-
-
-
 !! 学习和玩耍
 
-Visit [[教程 (Chinese)|https://tw-cn.netlify.app/]] or [[Official Site (English)|https://tiddlywiki.com/]] to learn.
+Visit [ext[教程 (Chinese)|https://tw-cn.netlify.app/]] or [ext[Official Site (English)|https://tiddlywiki.com/]] to learn.
 
 多看看中文教程，里面的插件和脚本照猫画虎就可以搞出来。
