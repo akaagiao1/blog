@@ -1,0 +1,11 @@
+{
+    "title": "清除展示边框",
+    "created": "20230902011915436",
+    "creator": "TidGi User",
+    "modified": "20230902011946658",
+    "modifier": "TidGi User",
+    "tags": "$:/tags/Stylesheet",
+    "text": ".tc-tiddler-frame {\n    padding: 5px 10px 5px 20px;\n    padding-top: 5px;\n    padding-right: 10px;\n    padding-bottom: 5px;\n    padding-left: 20px;\n\t\t}",
+    "revision": "0",
+    "bag": "default"
+}
