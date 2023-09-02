@@ -1,0 +1,12 @@
+created: 20230902050542106
+creator: TidGi User
+modified: 20230902050721574
+modifier: TidGi User
+tags: 新手指南
+title: 指南3
+
+!! 想去除红框部分内容的时候
+
+[img[edb6c55fa65d495be1f8bf6592fb14fc.png]]
+这个情况我们可以通过
+搜索筛选具备`$:/tags/SideBar`标签的条目，在对应条目中去除`$:/tags/SideBar`标签。
