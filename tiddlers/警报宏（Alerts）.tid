@@ -1,0 +1,16 @@
+created: 20230903104159542
+creator: TidGi User
+modified: 20230903104403655
+modifier: TidGi User
+tags: [[Shiraz Tutorial使用指南]]
+title: 警报宏（Alerts）
+
+
+<<alert primary "默认颜色" width:60%>>
+<<alert secondary "secondary alert" width:60%>>
+<<alert success "success alert" width:60%>>
+<<alert warning "warning alert" width:60%>>
+<<alert danger "danger alert" width:60%>>
+<<alert info "info alert" width:60%>>
+<<alert light "light alert" width:60%>>
+<<alert dark "dark alert" width:60%>>
