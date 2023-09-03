@@ -1,6 +1,6 @@
 created: 20230104152413814
 creator: 林一二
-modified: 20230903161634772
+modified: 20230903164136273
 modifier: TidGi User
 tags: 
 title: Index
@@ -28,8 +28,9 @@ Visit [ext[教程 (Chinese)|https://tw-cn.netlify.app/]] or [ext[Official Site (
 快捷按钮
 
 <$link to="tiddlywiki(太微)使用分享" overrideClass="badge badge-warning">太微使用教程</$link>
+<$link to="sing-box" overrideClass="badge badge-success">sing-box详解</$link>
 
-
+sing-box
 巧用（Command Palette）`Control`➕`P`；快捷搜索
 
 {{Shiraz Status}}
