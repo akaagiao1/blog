@@ -1,16 +1,120 @@
 created: 20230903104159542
 creator: TidGi User
-modified: 20230903104458735
+modified: 20230903143722135
 modifier: TidGi User
 tags: [[Shiraz Tutorial使用指南]]
 title: 警报宏（Alerts）
 
+! 默认
+''代码''
 
-<<alert primary "默认颜色" width:60%>>
-<<alert secondary "secondary alert" width:60%>>
-<<alert success "success alert" width:60%>>
+```
+<<alert type:"primary" src:"牛B" width:"100%", class:"">>
+```
+效果呈现
+
+<<alert type:"primary" src:"牛B" width:"100%", class:"">>
+```
+<<alert primary "默认颜色" width:100%>>
+```
+效果呈现
+
+<<alert primary "牛B" width:100%>>
+
+`type`和`src`可直接替换
+
+!! 基本示例
+
+代码
+
+```
+<<alert primary "默认颜色" width:20%>>
+<<alert secondary "secondary alert" width:30%>>
+<<alert success "success alert" width:55%
 <<alert warning "warning alert" width:60%>>
-<<alert danger "danger alert" width:60%>>
+<<alert danger "danger alert" width:40%>
 <<alert info "info alert" width:60%>>
-<<alert light "light alert" width:60%>>
-<<alert dark "dark alert" width:60%>>
+<<alert light "light alert" width:80%>>
+<<alert dark "dark alert" >>
+```
+
+效果呈现
+
+<<alert primary "默认颜色" width:20%>>
+<<alert secondary "secondary alert" width:30%>>
+<<alert success "success alert" width:55%
+<<alert warning "warning alert" width:60%>>
+<<alert danger "danger alert" width:40%>
+<<alert info "info alert" width:60%>>
+<<alert light "light alert" width:80%>>
+<<alert dark "dark alert" >>
+
+!! 带左栏的
+
+代码
+
+```
+<<alert primary src:"Leftbar alert primary" class:"leftbar border-primary">>
+```
+
+<<alert primary src:"Leftbar alert primary" class:"leftbar border-primary">>
+
+
+!! 带水平分隔线的（Alert with horizontal divider）
+
+!!! 示例1
+代码
+
+```
+<<alert primary """
+! 这个是标题
+这些是内容.
+
+---
+塞翁失马焉知非福.""">>
+
+```
+
+效果呈现
+
+<<alert primary """
+! 这个是标题
+这些是内容.
+
+---
+塞翁失马焉知非福.""">>
+
+!!! 示例二
+代码
+
+```
+<<alert secondary "
+!.h3 h3就是三级标题
+我闻忠善以损怨，不闻作威以防怨。
+
+---
+译文：我听说过可以用忠诚和善良来减少人与人之间的怨恨，没听说过可以用权威来防止怨恨。
+
+---
+
+解释：人与人之间交往，靠的是忠诚和善良，靠的是诚心诚意，只有这样才能消除怨恨；如果强词夺理，盛气凌人，或是仗着自己的威权，蛮狠不讲理，不但不能防止别人对你的怨恨，反而会把事情搞得更加糟糕。
+
+" width:60%>>
+```
+
+效果呈现
+
+<<alert secondary "
+!.h3 h3就是三级标题
+我闻忠善以损怨，不闻作威以防怨。
+
+---
+译文：我听说过可以用忠诚和善良来减少人与人之间的怨恨，没听说过可以用权威来防止怨恨。
+
+---
+
+解释：人与人之间交往，靠的是忠诚和善良，靠的是诚心诚意，只有这样才能消除怨恨；如果强词夺理，盛气凌人，或是仗着自己的威权，蛮狠不讲理，不但不能防止别人对你的怨恨，反而会把事情搞得更加糟糕。
+
+" width:60%>>
+
+

@@ -1,0 +1,63 @@
+created: 20230903142609781
+creator: TidGi User
+modified: 20230903144400544
+modifier: TidGi User
+tags: 警报宏（Alerts）
+title: 高级用法
+
+
+> 留意`class:`里的变化
+
+!! 示例1
+
+带左边栏的
+
+```
+<<alert primary src:"Leftbar alert primary" class:"leftbar border-primary">>
+<<alert danger src:"Leftbar alert danger" class:"leftbar border-danger">>
+<<alert success src:"Leftbar alert success" class:"leftbar border-success">>
+<<alert warning src:"Leftbar alert warning" class:"leftbar border-warning">>
+<<alert info src:"Leftbar alert info" class:"leftbar border-info">>
+<<alert secondary src:"Leftbar alert secondary" class:"leftbar border-secondary">>
+<<alert dark src:"Leftbar alert dark" class:"leftbar border-dark">>
+```
+
+<<alert primary src:"Leftbar alert primary" class:"leftbar border-primary">>
+<<alert danger src:"Leftbar alert danger" class:"leftbar border-danger">>
+<<alert success src:"Leftbar alert success" class:"leftbar border-success">>
+<<alert warning src:"Leftbar alert warning" class:"leftbar border-warning">>
+<<alert info src:"Leftbar alert info" class:"leftbar border-info">>
+<<alert secondary src:"Leftbar alert secondary" class:"leftbar border-secondary">>
+<<alert dark src:"Leftbar alert dark" class:"leftbar border-dark">>
+
+
+!! 示例2
+
+不带的
+
+border-这里， eg类border-primary用于创建带有全彩色边框的警报。
+
+```
+<<alert primary src:"基本的" class:"border-primary">>
+<<alert danger src:"危险的" class:"border-danger">>
+<<alert warning src:"警惕的" class:"border-warning">>
+<<alert info src:"提示" class:"border-info">>
+```
+
+<<alert primary src:"基本的" class:"border-primary">>
+<<alert danger src:"危险的" class:"border-danger">>
+<<alert warning src:"警惕的" class:"border-warning">>
+<<alert info src:"提示" class:"border-info">>
+
+!! 示例3
+
+`暂未搞懂`
+
+```
+<$macrocall $name="alert" type="primary" src=<<.lorem>> class="bg-transparent"/>
+<$macrocall $name="alert" type="danger" src=<<.lorem>> class="bg-transparent"/>
+```
+
+<$macrocall $name="alert" type="primary" src=<<.lorem>> class="bg-transparent"/>
+<$macrocall $name="alert" type="danger" src=<<.lorem>> class="bg-transparent"/>
+这里的bg-transparent类用于创建带有彩色文本和边框但没有背景的警报。
