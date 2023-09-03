@@ -1,0 +1,26 @@
+created: 20230903024209694
+creator: TidGi User
+modified: 20230903025213067
+modifier: TidGi User
+tags: 追剧
+title: 115原盘观看
+
+!!! 使用设备：（硬体）
+
+APPLE TV 7; HAISENSE OLED 外贸电视;友善R5S
+
+!!! 使用设备：（软体）
+
+infuse7 ；clounddrive2（下文简称`cd`）docker版
+istoreos（openwrt的一种变体，类似安卓和MIUI）
+
+!! 原理
+
+
+通过cd docker版运行后挂载115网盘到istoreos本地中，再smb出去
+
+可以流畅跑满带宽；原盘播放无压力；100m播放也无问题。
+
+
+!! 实现步骤
+
