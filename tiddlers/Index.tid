@@ -1,12 +1,13 @@
 created: 20230104152413814
 creator: 林一二
-modified: 20230903122017087
+modified: 20230903145811378
 modifier: TidGi User
 tags: 
 title: Index
 type: text/vnd.tiddlywiki
 
 {{徽章列表}}
+
 
 <$echarts $tiddler="$:/plugins/Gk0Wk/echarts/addons/TagCloud.js"/>
 
@@ -27,6 +28,7 @@ Visit [ext[教程 (Chinese)|https://tw-cn.netlify.app/]] or [ext[Official Site (
 
 巧用（Command Palette）`Control`➕`P`；快捷搜索
 
+{{Shiraz Status}}
 
 
 {{$:/config/oeyoews/info}}
