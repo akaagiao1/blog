@@ -1,10 +1,25 @@
 created: 20230903114024909
 creator: TidGi User
-modified: 20230903114645594
+modified: 20230903121647994
 modifier: TidGi User
 tags: [[Shiraz Tutorial使用指南]]
 title: Dynamic table concept 动态表概念
 
-示例1
+! 示例1
 
-<<table-dynamic filter:"[tag[sing-box]]" fields:"title email created tags" caption:"''Table 1. Dynamic table example''"  pagination:"yes" class:"w-75 table-center" stateTiddler:"emp01">>
+```
+<<table-dynamic filter:"[tag[sing-box]]" fields:"title created tags" caption:"''sing-box汇总''"  pagination:"yes" class:"w-75 table-center" stateTiddler:"emp01">>
+```
+
+!! 通俗的解释
+
+`filter`就是过滤器，这个是`必填`的；上代码就是只保留标签为sing-box的 
+ 
+ 
+ `caption`就是标题的意思。
+
+ `fields`就是要显示的字段和特殊列的列表。字段注意使用`空格`分隔。应给出其中一个字段或索引
+
+`pagination`就是你鼠标指示器的位置放在title里的蓝色字体上能显示子页（分页）
+
+<<table-dynamic filter:"[tag[sing-box]]" fields:"title  created tags" caption:"''sing-box汇总''"  pagination:"yes" class:"thead-primary table-hover-yellow" stateTiddler:"emp01">>

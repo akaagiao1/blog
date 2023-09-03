@@ -1,6 +1,6 @@
 created: 20230104152413814
 creator: 林一二
-modified: 20230903075839525
+modified: 20230903122017087
 modifier: TidGi User
 tags: 
 title: Index
@@ -23,6 +23,10 @@ Visit [ext[教程 (Chinese)|https://tw-cn.netlify.app/]] or [ext[Official Site (
 !! 好好学习！天天向上！
 
 <<reuse-tiddler "技术分享">>
+
+
+巧用（Command Palette）`Control`➕`P`；快捷搜索
+
 
 
 {{$:/config/oeyoews/info}}

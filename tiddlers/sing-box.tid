@@ -1,6 +1,6 @@
 created: 20230902124807987
 creator: 最可乐
-modified: 20230903114023546
+modified: 20230903121711218
 modifier: TidGi User
 tags: 节点搭建使用心得
 title: sing-box
@@ -9,5 +9,7 @@ title: sing-box
 
 
 [[[官网|https://sing-box.sagernet.org/zh/]]]
+
+<<table-dynamic filter:"[tag[sing-box]]" fields:"title  created tags" caption:"''sing-box汇总''"  pagination:"yes" class:"thead-primary table-hover-yellow" stateTiddler:"emp01">>
 
 
