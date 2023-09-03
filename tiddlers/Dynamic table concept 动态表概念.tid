@@ -1,0 +1,10 @@
+created: 20230903114024909
+creator: TidGi User
+modified: 20230903114645594
+modifier: TidGi User
+tags: [[Shiraz Tutorial使用指南]]
+title: Dynamic table concept 动态表概念
+
+示例1
+
+<<table-dynamic filter:"[tag[sing-box]]" fields:"title email created tags" caption:"''Table 1. Dynamic table example''"  pagination:"yes" class:"w-75 table-center" stateTiddler:"emp01">>
