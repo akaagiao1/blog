@@ -1,0 +1,18 @@
+created: 20230903072720981
+creator: TidGi User
+modified: 20230903073231565
+modifier: TidGi User
+tags: tiddlywiki(太微)使用分享
+title: Echarts插件
+
+! 教学参考
+https://tiddly-gittly.github.io/tw-echarts/
+
+! 示例1
+`<$echarts $text={{echarts示例}}/>`
+
+!! 加高度
+
+`<$echarts $text={{echarts示例}} $height=400px/>`
+
+<$echarts $text={{echarts示例}} $height=400px />
