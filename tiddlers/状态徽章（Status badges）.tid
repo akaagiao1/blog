@@ -1,0 +1,67 @@
+created: 20230903152619972
+creator: TidGi User
+modified: 20230903153705056
+modifier: TidGi User
+tags: 徽章（badges）
+title: 状态徽章（Status badges）
+
+!!! 描述
+
+状态徽章是两种语义颜色的双徽章，表示状态、版本、覆盖范围、进度以及像 Github 一样的小丝带。
+
+状态徽章有四种语义颜色，但可以自定义更多颜色。四个语义状态徽章是：
+
+* 基本的
+* 信息
+* 成功
+* 警告
+* 危险
+
+!!! 语法
+
+```
+<<dbadge subject status type>>
+```
+
+
+|属性|描述|
+|subject|the subject of badge|
+|status|the relation, status, coverage, ...|
+|type|语义类型之一: primary, info, success, warning, danger. 默认是 primary|
+
+!!! 示例
+
+!!语法颜色
+
+```
+<<dbadge "primary" "blue" primary>>
+<<dbadge "info" "cyan" info>>
+<<dbadge "success" "green" success>> 
+<<dbadge "warning" "yellow" warning>>
+<<dbadge "danger" "red" danger>>
+```
+<<dbadge "primary" "blue" primary>>
+<<dbadge "info" "cyan" info>>
+<<dbadge "success" "green" success>> 
+<<dbadge "warning" "yellow" warning>>
+<<dbadge "danger" "red" danger>>
+
+```
+<<dbadge "Tiddlywiki" "5.1.18" "info">>
+<<dbadge "Node.js" "passed">>
+<<dbadge "Mac" "M2" "warning">>
+<<dbadge "Android" "supported" "danger">>
+<<dbadge "coverage" "Html5" "success">>
+```
+
+<<dbadge "Tiddlywiki" "5.1.18" "info">>
+<<dbadge "Node.js" "passed">>
+<<dbadge "Mac" "M2" "warning">>
+<<dbadge "Android" "supported" "danger">>
+<<dbadge "coverage" "Html5" "success">>
+
+!!! 其他示例
+
+
+<<dbadge "Tiddlywiki" "I love it">> 
+<<dbadge "Jeremy Ruston" "The creator" success>>

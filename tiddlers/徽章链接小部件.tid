@@ -1,0 +1,60 @@
+created: 20230903154302068
+creator: TidGi User
+modified: 20230903155900729
+modifier: TidGi User
+tags: 徽章（badges）
+title: 徽章链接小部件
+
+!! 示例
+只要在`""`中加上要到达的条目即可
+
+```
+<$link to="" class="badge badge-primary text-white">Primary</$link>
+<$link to="" class="badge badge-secondary text-white">Secondary</$link>
+<$link to="" class="badge badge-success text-white">Success</$link>
+<$link to="" class="badge badge-danger text-white">Danger</$link>
+<$link to="" class="badge badge-warning">Warning</$link>
+<$link to="" class="badge badge-info text-white">Info</$link>
+<$link to="" class="badge badge-light">Light</$link>
+<$link to="" class="badge badge-dark text-white">Dark</$link>
+```
+!!! 举例说明
+```
+<$link to="tiddlywiki(太微)使用分享" class="badge badge-warning">太微使用教程</$link>
+```
+
+<$link to="tiddlywiki(太微)使用分享" class="badge badge-warning">太微使用教程</$link>
+
+!!! 重要提示
+
+实际上，上述类最好与小部件`overrideClass`的输入参数一起使用$link。问题是将使用 `overrideClass` 而不是默认类，因此缺少的链接将不会具有斜体样式。请参阅下面的示例
+
+```
+<$link to="tiddlywiki(太微)使用分享" overrideClass="badge badge-warning">太微使用教程</$link>
+```
+
+<$link to="tiddlywiki(太微)使用分享" overrideClass="badge badge-warning">太微使用教程</$link>
+
+记得c要`大写`
+
+
+
+
+<$link to="" class="badge badge-primary text-white">Primary</$link>
+<$link to="" class="badge badge-secondary text-white">Secondary</$link>
+<$link to="" class="badge badge-success text-white">Success</$link>
+<$link to="" class="badge badge-danger text-white">Danger</$link>
+<$link to="" class="badge badge-warning">Warning</$link>
+<$link to="" class="badge badge-info text-white">Info</$link>
+<$link to="" class="badge badge-light">Light</$link>
+<$link to="" class="badge badge-dark text-white">Dark</$link>
+
+
+
+
+
+```
+><$link to="sing-box" overrideClass="badge badge-success" tooltip="Open demo/alert-macro tiddler">sing-box链接</$link>
+```
+
+><$link to="sing-box" overrideClass="badge badge-success" tooltip="Open demo/alert-macro tiddler">sing-box链接</$link>

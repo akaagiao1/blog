@@ -1,0 +1,42 @@
+created: 20230903151700886
+creator: TidGi User
+modified: 20230903152417850
+modifier: TidGi User
+tags: 徽章（badges）
+title: 徽章丸（Badge pills）
+
+>这个是教程2
+
+! 语法示例
+
+```
+<<badge-pill type:"primary" src:"">>
+```
+! 代码属性
+
+|Attributes|Type|Description|
+|type|optional|a bootstrap contextual classes (e.g. primary, secondary,...). The default value is primary|
+|src|required|the input source to be shown inside badge|
+
+!! 示例
+
+```
+<<badge-pill primary "汉钟离">> 
+<<badge-pill secondary "张果老">>
+<<badge-pill success "韩湘子">>
+<<badge-pill warning "铁拐李、">>
+<<badge-pill danger "吕洞宾">>
+<<badge-pill info "何仙姑">>
+<<badge-pill light "蓝采和">>
+<<badge-pill dark "曹国舅">>
+```
+
+
+<<badge-pill primary "汉钟离">> 
+<<badge-pill secondary "张果老">>
+<<badge-pill success "韩湘子">>
+<<badge-pill warning "铁拐李、">>
+<<badge-pill danger "吕洞宾">>
+<<badge-pill info "何仙姑">>
+<<badge-pill light "蓝采和">>
+<<badge-pill dark "曹国舅">>

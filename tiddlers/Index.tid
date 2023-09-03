@@ -1,6 +1,6 @@
 created: 20230104152413814
 creator: 林一二
-modified: 20230903145811378
+modified: 20230903161020146
 modifier: TidGi User
 tags: 
 title: Index
@@ -13,7 +13,9 @@ type: text/vnd.tiddlywiki
 
 <$echarts $tiddler="$:/plugins/Gk0Wk/echarts/addons/GitHubHeatMap.js" $height="200px" subfilter="[!is[shadow]!is[system]!field:calendarEntry[yes]]"/>
 
-注意[[早睡早起]]
+记住这个网站
+
+<<code src:"https://akazz.eu.org" language:"xml" title:"网址">>
 
 !! 学习和玩耍
 

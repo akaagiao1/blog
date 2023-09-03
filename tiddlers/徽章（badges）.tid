@@ -1,0 +1,45 @@
+created: 20230903150447162
+creator: TidGi User
+modified: 20230903151616919
+modifier: TidGi User
+tags: [[Shiraz Tutorial使用指南]]
+title: 徽章（badges）
+
+! 简单徽章
+
+!! 句法
+
+```
+<<badge type:"primary" src:"">>
+```
+!! 内容和属性
+
+|Attributes|Type|Description|
+|type|optional|a bootstrap contextual classes (e.g. primary, secondary,...). The default value is primary|
+|src|required|the input source to be shown|
+
+|属性|类型|描述|
+|type|选修的|引导上下文类（例如主要、次要……）。默认值为primary|
+|src|必需的|要显示的输入源|
+
+简单示例
+
+```
+<<badge primary "大娃">>
+<<badge secondary "二娃">>
+<<badge success "三娃">>
+<<badge warning "四娃">>
+<<badge danger "五娃">>
+<<badge info "六娃">>
+<<badge light "七娃">>
+<<badge dark "爷爷">>
+```
+
+<<badge primary "大娃">>
+<<badge secondary "二娃">>
+<<badge success "三娃">>
+<<badge warning "四娃">>
+<<badge danger "五娃">>
+<<badge info "六娃">>
+<<badge light "七娃">>
+<<badge dark "爷爷">>
