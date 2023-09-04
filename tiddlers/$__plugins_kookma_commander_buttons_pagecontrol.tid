@@ -2,26 +2,31 @@ caption: {{$:/plugins/kookma/commander/images/commander.svg}} {{$:/language/Butt
 created: 20230902055111783
 creator: TidGi User
 description: Open tiddler commander
-modified: 20230903230754271
+modified: 20230903235025931
 modifier: TidGi User
 tags: $:/tags/PageControls
 title: $:/plugins/kookma/commander/buttons/pagecontrol
 type: text/vnd.tiddlywiki
 
-\whitespace trim
-
-\define commander-button(class)
-\whitespace trim
-<$button to="$:/Commander" tooltip={{$:/language/Buttons/Commander/Hint}} aria-label={{$:/language/Buttons/Commander/Caption}} class="""$(tv-config-toolbar-class)$ $class$""">
-<$list filter="[<tv-config-toolbar-icons>match[yes]]">
-{{$:/plugins/kookma/commander/images/commander.svg}}
-</$list>
-<$list filter="[<tv-config-toolbar-text>match[yes]]">
-<span class="tc-btn-text"><$text text={{$:/language/Buttons/Commander/Caption}}/></span>
-</$list>
-</$button>
+\define new-solution()
+<$action-sendmessage 
+    $message="tm-new-tiddler"
+    keywords=""
+    tags="solution"
+    responder=""
+    url="" />
 \end
 
-<$list filter="[list[$:/StoryList]] +[field:title[$:/Commander]]" emptyMessage=<<commander-button>>>
-<<commander-button "tc-selected">>
+
+<$button 
+ actions=<<new-solution>> 
+ tooltip={{$:/language/Buttons/Solution/Hint}} 
+ aria-label={{$:/language/Buttons/Solution/Caption}} 
+ class=<<tv-config-toolbar-class>> >
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/plugins/kookma/solution/image/question-circle.svg}}
 </$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text"><$text text={{$:/language/Buttons/Solution/Caption}}/></span>
+</$list>
+</$button>
