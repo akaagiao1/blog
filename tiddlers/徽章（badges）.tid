@@ -1,6 +1,6 @@
 created: 20230903150447162
 creator: TidGi User
-modified: 20230904020846496
+modified: 20230904024316766
 modifier: 翟不止
 tags: [[Shiraz Tutorial使用指南]]
 title: 徽章（badges）
@@ -24,6 +24,7 @@ title: 徽章（badges）
 |src|必需的|要显示的输入源|
 
 简单示例
+
 
 ```
 <<badge primary "大娃">>
