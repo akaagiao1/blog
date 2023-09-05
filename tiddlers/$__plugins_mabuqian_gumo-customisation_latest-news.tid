@@ -1,6 +1,6 @@
 created: 20230905153559072
 creator: TidGi User
-modified: 20230905153610328
+modified: 20230905161503773
 modifier: TidGi User
 tags: 
 title: $:/plugins/mabuqian/gumo-customisation/latest-news
@@ -9,10 +9,12 @@ title: $:/plugins/mabuqian/gumo-customisation/latest-news
 <ul>
   <$list filter="[!is[system]days[-7]!<currentTiddler>!sort[created]]">
     <li>
-		<$link><$view field="title"/></$link>
-        <$list filter="[<currentTiddler>days[-3]]"> @@color:red;^^新^^@@</$list>
+    <$link><$view field="title"/></$link>
+        <$list filter="[<currentTiddler>days[-3]]"> @@color:red;^^新^^@@</$list>  
+        <$list filter="[<currentTiddler>days[-60]!days[-30]]"> @@color:green;^^近两月^^@@</$list> 
         <$list filter="[<currentTiddler>days[-30]!days[-7]]"> @@color:black;^^近期^^@@</$list>
     </li>
   </$list>
 </ul>
 </div>
+

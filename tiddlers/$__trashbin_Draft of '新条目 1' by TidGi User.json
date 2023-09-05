@@ -1,0 +1,11 @@
+{
+    "created": "20230905161725577",
+    "creator": "TidGi User",
+    "text": "<!-- 天数过滤宏 -->\n<$macro dayFilter days color label>\n  <$list filter=\"[<currentTiddler>days[$days$]]\">\n    @@color:$color$;^^$label$^^@@ \n  </$list>\n</$macro>\n\n<!-- 主列表 -->\n<$list filter=\"[!is[system]days[-7]!<currentTiddler>!sort[created]]\">\n  <ul>\n    <li>\n      <$link><$view field=\"title\"/></$link>\n        \n      <$dayFilter days=\"-3\" color=\"red\" label=\"新\"/>\n      <$dayFilter days=\"-60!-30\" color=\"green\" label=\"近两月\"/>\n      <$dayFilter days=\"-30!-7\" color=\"black\" label=\"近期\"/>\n      \n    </li>\n  </ul>\n</$list>",
+    "draft.title": "新条目 2",
+    "tags": "ai学习太微",
+    "title": "Draft of '新条目 1' by TidGi User",
+    "draft.of": "新条目 1",
+    "modified": "20230905161926172",
+    "modifier": "TidGi User"
+}

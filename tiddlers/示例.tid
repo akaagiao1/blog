@@ -1,0 +1,28 @@
+created: 20230905160532973
+creator: TidGi User
+modified: 20230905160554836
+modifier: TidGi User
+tags: 
+title: 示例
+
+<div style="column-count:3;">
+<ul>
+
+<$list filter="[!is[system]days[-7]!<currentTiddler>!sort[created]]">
+
+<li>
+
+<$link><$view field="title"/></$link>
+
+<$list filter="[<currentTiddler>days[-3]]"> @@color:red;^^新^^@@</$list>
+
+<$list filter="[<currentTiddler>days[-60]!days[-30]]"> @@color:green;^^近两月^^@@</$list> 
+
+<$list filter="[<currentTiddler>days[-30]!days[-7]]"> @@color:black;^^近期^^@@</$list>
+
+</li>
+
+</$list>
+
+</ul>
+</div>
