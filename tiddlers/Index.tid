@@ -1,7 +1,7 @@
 created: 20230104152413814
 creator: 林一二
-modified: 20230904013038958
-modifier: 翟不止
+modified: 20230905154121585
+modifier: TidGi User
 tags: 
 title: Index
 type: text/vnd.tiddlywiki
@@ -29,6 +29,11 @@ Visit [ext[教程 (Chinese)|https://tw-cn.netlify.app/]] or [ext[Official Site (
 
 <$link to="tiddlywiki(太微)使用分享" overrideClass="badge badge-warning">太微使用教程</$link>
 <$link to="sing-box" overrideClass="badge badge-success">sing-box详解</$link>
+<$link to="$:/plugins/mabuqian/gumo-customisation/tag-cloud-display" overrideClass="badge badge-primary">快速展示所有标签</$link>
+
+<$link to="$:/plugins/mabuqian/gumo-customisation/latest-news" overrideClass="badge badge-dark">最近更新</$link>
+
+
 
 sing-box
 巧用（Command Palette）`Control`➕`P`；快捷搜索

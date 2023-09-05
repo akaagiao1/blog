@@ -1,0 +1,12 @@
+created: 20230905153636754
+creator: TidGi User
+modified: 20230905153647017
+modifier: TidGi User
+tags: 
+title: $:/plugins/mabuqian/gumo-customisation/tag-cloud-display
+
+<div style="column-count:3;">
+<$list filter="[subfilter{$:/core/Filters/AllTags!!filter}] :sort:number:reverse[tagging[]count[]]">
+<$link><<tag>>^^(<$count filter="[tag<currentTiddler>]" />)^^</$link>
+</$list>
+</div>
