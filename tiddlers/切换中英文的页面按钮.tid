@@ -1,0 +1,20 @@
+created: 20230906121022591
+creator: TidGi User
+modified: 20230906121036301
+modifier: TidGi User
+tags: tiddlywiki(太微)使用分享
+title: 切换中英文的页面按钮
+
+list-after: $:/core/ui/ViewTemplate/tags
+tags: $:/tags/ViewTemplate
+title: LanguageSwitcher
+type: text/vnd.tiddlywiki
+
+<$list filter="[[$:/language]get[text]removeprefix[$:/languages/]else[en-GB]]" variable="lang">
+<$list filter="[<lang>search[zh]]">
+<$button set="$:/language" setTo="$:/languages/en-GB" style="">🇬🇧 Switch to English</$button>
+</$list>
+<$list filter="[<lang>!search[zh]]">
+<$button set="$:/language" setTo="$:/languages/zh-Hans" style="">🇨🇳 切换至中文</$button>
+</$list>
+</$list>
