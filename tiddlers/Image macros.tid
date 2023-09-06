@@ -1,0 +1,10 @@
+created: 20230906010717180
+creator: TidGi User
+modified: 20230906011235956
+modifier: TidGi User
+tags: 
+title: Image macros
+
+<<image-slidein "https://github.com/akaagiao1/testpicture/blob/main/%E4%BD%90%E5%8A%A9.png?raw=true" caption:"Uchiha Sasuke" slidein:"left">>
+
+<<image-slidein "https://github.com/akaagiao1/testpicture/blob/main/%E9%B8%A3%E4%BD%90.png?raw=true" caption:"鸣佐" slidein:"right">>

@@ -1,6 +1,6 @@
 created: 20230903102131507
 creator: TidGi User
-modified: 20230904091227105
+modified: 20230906011746757
 modifier: TidGi User
 tags: tiddlywiki(太微)使用分享
 title: Shiraz Tutorial使用指南
@@ -11,5 +11,5 @@ https://kookma.github.io/TW-Shiraz/
 
 注意代码中常用的英文冒号`:`
 
-><<content 徽章（badges）>>
+<<tabs tabsList:"[tag[Shiraz Tutorial使用指南]]" default:"multicol" class:"tc-vertical">>
 
