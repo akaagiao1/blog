@@ -1,7 +1,7 @@
 created: 20230104152413814
 creator: 林一二
-modified: 20230906121222498
-modifier: TidGi User
+modified: 20230907055153717
+modifier: 翟不止
 tags: 
 title: Index
 type: text/vnd.tiddlywiki
@@ -32,7 +32,7 @@ Visit [ext[教程 (Chinese)|https://tw-cn.netlify.app/]] or [ext[Official Site (
 <$link to="$:/plugins/mabuqian/gumo-customisation/tag-cloud-display" overrideClass="badge badge-primary">快速展示所有标签</$link>
 
 <$link to="$:/plugins/mabuqian/gumo-customisation/latest-news" overrideClass="badge badge-dark">最近更新</$link>
-{{切换中英文的页面按钮}}
+
 
 
 sing-box
