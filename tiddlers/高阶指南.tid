@@ -1,0 +1,21 @@
+created: 20230907035644226
+creator: TidGi User
+modified: 20230907042335091
+modifier: TidGi User
+tags: clash2sfa使用指南
+title: 高阶指南
+
+! 高阶指南
+
+通过自定义的链接模板，达到流媒体分流
+
+下图所示
+!! 配置模板
+自己可以下载或者直接使用，默认将网飞，Disney，Amazon video走`netflix`
+
+所有的出国浏览走得`新加坡`
+
+
+https://raw.githubusercontent.com/akaagiao1/Hi_Hysteria/main/client/sg2.json
+
+[img[https://github.com/akaagiao1/testpicture/blob/main/clash%E8%BD%ACsing.jpg?raw=true]]
