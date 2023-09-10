@@ -1,0 +1,43 @@
+created: 20230910144152883
+creator: TidGi User
+modified: 20230910145628311
+modifier: TidGi User
+tags: sing-box
+title: 免费的cf中转
+
+!原理
+
+!! 步骤
+
+通过page搭建vless节点，再在tg上找到大佬扫到的IP，
+
+!!! 方法一（推荐）
+
+把IP导入到不良林网站，通过不良林优选工具筛选出速度快的节点。
+
+优点：快
+缺点：费事
+
+!!! 方法二
+
+直接用大佬的优选工具，
+优点省事，缺点，某些优质的IP为完全测到
+
+把筛选的IP可直接替换，也可以绑定自己的域名，多放几个ip绑定（推荐）
+
+利用sing-box，detour（clash又叫⬅️链式代理）特性中转我们的落地机。
+
+`detour不会的可以利用singbox可视化客户端nekoray。配置链式代理，导出singbox配置。再到json.cn网站排序一下即可`
+
+!! 大佬的频道
+
+https://t.me/cf_push
+
+大佬的工具
+
+https://t.me/CF_NAT/38782
+
+不良林的网站
+
+https://bulianglin.com/archives/cdn.html
+
