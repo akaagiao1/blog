@@ -1,12 +1,13 @@
 created: 20230911024013868
 creator: 翟不止
-modified: 20230911024518771
+modified: 20230911030111498
 modifier: 翟不止
 tags: 技术分享
 title: 常用的vps脚本
 
 ! 更准确的流媒体解锁
-
-
 <<wikitext-example 
 "bash <(curl -L -s check.unlock.media)">>
+! 更快的流媒体检查
+<<wikitext-example 
+"bash <(curl -Ls unlock.moe)">>
