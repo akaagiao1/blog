@@ -1,7 +1,7 @@
 created: 20230911024013868
 creator: 翟不止
-modified: 20230912103507733
-modifier: TidGi User
+modified: 20230914015234221
+modifier: 翟不止
 tags: 技术分享
 title: 常用的vps脚本
 
@@ -15,5 +15,9 @@ title: 常用的vps脚本
 ! bbr
 
 ```
+
+
 wget -O tcpx.sh "https://github.com/ylx2016/Linux-NetSpeed/raw/master/tcpx.sh" && chmod +x tcpx.sh && ./tcpx.sh>>
+
+
 ```
