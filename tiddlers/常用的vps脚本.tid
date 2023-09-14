@@ -1,6 +1,6 @@
 created: 20230911024013868
 creator: 翟不止
-modified: 20230914015234221
+modified: 20230914015259485
 modifier: 翟不止
 tags: 技术分享
 title: 常用的vps脚本
@@ -17,7 +17,7 @@ title: 常用的vps脚本
 ```
 
 
-wget -O tcpx.sh "https://github.com/ylx2016/Linux-NetSpeed/raw/master/tcpx.sh" && chmod +x tcpx.sh && ./tcpx.sh>>
+wget -O tcpx.sh "https://github.com/ylx2016/Linux-NetSpeed/raw/master/tcpx.sh" && chmod +x tcpx.sh && ./tcpx.sh
 
 
 ```
