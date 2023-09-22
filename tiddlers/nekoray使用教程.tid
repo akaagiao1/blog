@@ -1,6 +1,13 @@
 created: 20230907051855560
 creator: 翟不止
-modified: 20230907051908863
-modifier: 翟不止
+modified: 20230922140229733
+modifier: TidGi User
 tags: sing-box
 title: nekoray使用教程
+
+首先下载软件
+
+接着选择内核，建议选择sing-box，支持的协议更加丰富。
+
+
+接着在路由设置里将简单路由改成绕过局域网和大陆
