@@ -1,0 +1,102 @@
+created: 20230922021845975
+creator: 翟不止
+modified: 20230922022129517
+modifier: 翟不止
+tags: 技术分享
+title: MyNodeQuery搭建
+
+安装MySQL
+创建文件夹
+
+```
+mkdir -p /root/mysql/data /root/mysql/init /root/mysql/conf
+cd /root/mysql/conf && touch my.cnf
+cd /root/mysql && touch docker-compose.yml
+vim docker-compose.yml
+```
+将以下配置复制并修改
+
+```
+version: '3'
+ 
+services:
+  mysql8.0:
+    image: mysql
+    container_name: mysql8.0
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+      # root 密码
+      MYSQL_ROOT_PASSWORD: mynodequery
+      # 初始化数据库(后续的初始化sql会在这个库执行)
+      MYSQL_DATABASE: mynodequery
+      # 初始化用户(不能是root 会报错, 后续需要给新用户赋予权限)
+      MYSQL_USER: mynodequery
+      # 用户密码
+      MYSQL_PASSWORD: mynodequery
+    ports:
+      - 3306:3306
+    volumes:
+      # 数据挂载
+      - /root/mysql/data/:/var/lib/mysql/
+      # 配置挂载
+      - /root/mysql/conf/:/etc/mysql/conf.d/
+      # 初始化目录挂载
+      - /root/mysql/init/:/docker-entrypoint-initdb.d/
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
+```
+
+启动
+
+```
+docker-compose up -d
+```
+
+安装MyNodeQuery
+创建文件夹
+
+```
+mkdir -p /root/MyNodeQuery && cd /root/MyNodeQuery && touch docker-compose.yml
+
+```
+编辑配置
+
+```
+
+vim /root/MyNodeQuery/docker-compose.yml
+version: '3'
+services:
+  mynodequery:
+    image: jaydenlee2019/mynodequery:latest
+    container_name: mynodequery
+    ports:
+      - 5000:5000	
+
+```
+
+启动
+
+```
+docker-compose up -d
+```
+客户端卸载
+
+```
+rm -rf /etc/mynodequery && (crontab -u mynodequery -l | grep -v "/etc/mynodequery/mynq-agent.sh") | crontab -u mynodequery - && userdel mynodequery
+
+```
+反代
+caddy配置
+
+```
+
+domain.com {
+    encode gzip
+    reverse_proxy 127.0.0.1:5000
+}
+```
