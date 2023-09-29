@@ -1,0 +1,28 @@
+created: 20230929134020250
+creator: TidGi User
+modified: 20230929134112567
+modifier: TidGi User
+tags: 兴趣爱好
+title: linux挂载cd2
+
+!! 下载压缩包 
+wget https://github.com/cloud-fs/cloud-fs.github.io/releases/download/v0.5.7/clouddrive-2-linux-aarch64-0.5.7.tgz
+
+!!  解压到当前目录
+tar -xzf clouddrive-2-linux-aarch64-0.5.7.tgz
+
+!! 查看解压后的目录权限 
+ls -ld clouddrive-2-linux-aarch64-0.5.7
+
+!! 修改权限为所有用户可读可执行
+chmod -R a+rx clouddrive-2-linux-aarch64-0.5.7
+主要步骤:
+
+使用wget下载压缩包
+使用tar命令解压到当前目录
+使用ls -ld查看解压目录的权限
+使用chmod -R a+rx修改权限为所有用户可读可执行
+需要注意的是,a+rx权限可能存在安全风险,需要根据实际情况谨慎设置。
+推荐只给特定用户可执行权限,不要开放给所有用户。
+
+另外,可以考虑不解压到系统目录,而是普通用户目录,从而避免权限问题。
