@@ -1,6 +1,6 @@
 created: 20230929134020250
 creator: TidGi User
-modified: 20230929134112567
+modified: 20230929142702578
 modifier: TidGi User
 tags: 兴趣爱好
 title: linux挂载cd2
@@ -26,3 +26,51 @@ chmod -R a+rx clouddrive-2-linux-aarch64-0.5.7
 推荐只给特定用户可执行权限,不要开放给所有用户。
 
 另外,可以考虑不解压到系统目录,而是普通用户目录,从而避免权限问题。
+
+! 在linux上
+1、创建文件：/etc/systemd/system/clouddrive.service
+内容为：
+
+```
+[Unit]
+Description=CloudDrive 2
+After=network.target
+
+[Service]
+Type=exec
+Restart=on-failure
+ExecStart=/(上传的目录.../...)/clouddrive
+
+[Install]
+WantedBy=multi-user.target
+
+保存。之后控制台执行：
+systemctl daemon-reload
+systemctl start clouddrive.service
+访问http://ip:19798/ 即可。
+
+```
+可选开机启动：
+
+
+`systemctl enable clouddrive.service	`
+
+卸载：
+
+
+`systemctl disable clouddrive.service
+systemctl stop clouddrive.service
+rm -f -r /(上传的目录.../...)
+rm -f -r /etc/systemd/system/clouddrive.service`
+
+smb
+
+
+[share]
+   comment = Anonymous Share
+   path = /home/share/115
+   browsable = yes
+   public = yes
+   writable = yes
+   security = user
+   map to guest = Bad User
