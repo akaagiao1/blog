@@ -1,0 +1,50 @@
+created: 20230929152843482
+creator: TidGi User
+modified: 20230929153318356
+modifier: TidGi User
+tags: 兴趣爱好
+title: 新条目 1
+
+在Ubuntu系统中,将dhcp动态获取IP改为固定IP的方法:
+
+打开终端,使用root权限编辑网络配置文件:
+
+注意先ip addr show 查看网口
+
+sudo vim /etc/netplan/01-netcfg.yaml
+
+修改网卡配置,将dhcp改为static,并添加IP信息:
+
+
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eno1:
+      dhcp4: no
+      addresses: [192.168.10.110/24]
+      gateway4: 192.168.10.1
+      nameservers:
+          addresses: [192.168.10.1]
+	
+
+
+
+运行以下命令应用配置:
+
+
+sudo netplan apply
+
+可以查看IP是否已更改:
+
+
+ip addr show
+也可以通过图形界面修改,在Settings - Network中切换为Manual方法并输入静态IP。
+这将系统的IP从dhcp动态获取改为静态IP。
+
+注意网卡名称eno1、IP地址、网关、DNS要根据实际情况修改。
+
+每次网络配置更改后需要运行netplan apply或重新启动网络服务来生效。
+
+Copy
+Retry
