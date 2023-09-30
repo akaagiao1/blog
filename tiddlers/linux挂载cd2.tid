@@ -1,6 +1,6 @@
 created: 20230929134020250
 creator: TidGi User
-modified: 20230929151450504
+modified: 20230929234710467
 modifier: TidGi User
 tags: 兴趣爱好
 title: linux挂载cd2
@@ -68,32 +68,32 @@ smb
 在Ubuntu上实现匿名访问共享文件的步骤如下:
 
 安装 samba 服务:
-bash
 
-Copy code
 
 sudo apt install samba
-创建共享文件夹:
-bash
 
-Copy code
+
+创建共享文件夹:
+
 
 sudo mkdir /home/share
-修改共享文件夹权限:
-bash
 
-Copy code
+
+修改共享文件夹权限:
+
 
 sudo chmod -R 0777 /home/share
-编辑 samba 配置文件:
-bash
 
-Copy code
+
+编辑 samba 配置文件:
+
 
 sudo vim /etc/samba/smb.conf
+
+
 加入以下配置:
 
-Copy code
+
 
 ```
 [share]
@@ -106,25 +106,28 @@ Copy code
 ```
 5.  修改认证方式为匿名访问:
 
-bash
 
-Copy code
 
 sudo vim /etc/samba/smb.conf
+
+
 加入:
 
-Copy code
+
 
 security = user
+
 map to guest = Bad User
+
+
 6.  重新启动 samba 服务:
 
-bash
 
-Copy code
 
 sudo service smbd restart
+
 now 在Windows下使用路径访问:\UbuntuIP\share
+
 这样就实现了匿名访问配置,访问时可以不输入用户名和密码。
 
 需要注意,这种配置会降低安全性,请根据实际情况谨慎操作
