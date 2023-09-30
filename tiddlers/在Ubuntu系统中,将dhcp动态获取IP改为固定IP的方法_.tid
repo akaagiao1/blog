@@ -1,15 +1,22 @@
 created: 20230929152843482
 creator: TidGi User
-modified: 20230929153318356
+modified: 20230930041050712
 modifier: TidGi User
 tags: 兴趣爱好
-title: 新条目 1
+title: 在Ubuntu系统中,将dhcp动态获取IP改为固定IP的方法:
 
-在Ubuntu系统中,将dhcp动态获取IP改为固定IP的方法:
+
 
 打开终端,使用root权限编辑网络配置文件:
 
-注意先ip addr show 查看网口
+注意先
+
+```
+ip addr show
+
+```
+
+查看网口
 
 sudo vim /etc/netplan/01-netcfg.yaml
 
