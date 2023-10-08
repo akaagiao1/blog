@@ -1,13 +1,26 @@
 created: 20230925150610511
 creator: TidGi User
-modified: 20230925150654173
+modified: 20231008104936059
 modifier: TidGi User
 tags: 技术分享
 title: 青蛇探针安装
 
 !!! 一键脚本
+!!!! 国外
 
 ```
 bash <(curl -sL https://raw.githubusercontent.com/souying/serverMmon/main/scripts/mmon_install.sh)  
+```
+!!!! 国内
+
+```
+bash <(curl -sL https://cdn.jsdelivr.net/gh/souying/serverMmon@main/scripts/mmon_install.sh)   
+```
+or
+
+
+```
+bash <(curl -sL https://gitee.com/souying/serverMmon/raw/main/scripts/mmon_install.sh) 
+
 ```
 
