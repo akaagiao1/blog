@@ -1,71 +1,12 @@
 created: 20231008103551258
 creator: TidGi User
-modified: 20231008110920090
+modified: 20231008131626252
 modifier: TidGi User
 tags: 技术分享
 title: linux安装clouddrive2
 
-这里以国内为掩饰。
- ! 更换国内源
-一、首先为自己的Linux服务器安装使用命令依赖
-因为Linux一键更换软件源脚本需要使用到curl程序，因此先要根据自己系统来选择对应命令安装curl！关于Linux系统如何安装curl程序，下面命令相对来说是比较全面的了。
 
-Debian、Ubuntu、Kali系统安装curl命令
-
-
-
-```
-apt-get install -y curl
-```
-
-Red Hat Enterprise Linux、CentOS、Rocky Linux、AlmaLinux、Fedora、OpenCloudOS、openEuler系统安装curl命令
-
-
-
-```
-yum install -y curl || dnf install -y curl
-```
-
-openSUSE系统安装curl命令
-
-
-
-```
-zypper install curl
-```
-
-Arch Linux系统安装curl命令
-
-
-
-```
-pacman -S curl
-```
-
-
-二、国内机房Linux系统云服务器、独立服务器请使用下面命令
-下面命令适合国内Linux系统服务器使用，因为此脚本支持更换的源节点都是国内节点，有15个节点可以任意选择，包括了阿里云、腾讯云、华为云、网易、搜狐、清华大学、北京大学、浙江大学、南京大学、重庆大学、兰州大学、上海交通大学、哈尔滨工业大学、中国科学技术大学、中国科学院软件研究所，共计15个节点！
-
-
-
-```
-bash <(curl -sSL https://linuxmirrors.cn/main.sh)
-```
-
-或者
-
-
-```
-bash <(curl -sSL https://raw.githubusercontent.com/SuperManito/LinuxMirrors/main/ChangeMirrors.sh)
-```
-
-或者
-
-
-
-```
-bash <(curl -sSL https://gitee.com/SuperManito/LinuxMirrors/raw/main/ChangeMirrors.sh)
-```
+{{linux更换国内源}}
 
 ! cd2下载地址
 
