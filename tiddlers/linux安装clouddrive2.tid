@@ -1,6 +1,6 @@
 created: 20231008103551258
 creator: TidGi User
-modified: 20231008110521961
+modified: 20231008110920090
 modifier: TidGi User
 tags: 技术分享
 title: linux安装clouddrive2
@@ -70,6 +70,12 @@ bash <(curl -sSL https://gitee.com/SuperManito/LinuxMirrors/raw/main/ChangeMirro
 ! cd2下载地址
 
 https://github.com/cloud-fs/cloud-fs.github.io/releases/
+
+先查看cpu架构
+
+```
+lscpu
+```
 
 下载最新版的
 
