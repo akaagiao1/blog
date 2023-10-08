@@ -1,0 +1,102 @@
+created: 20231008103551258
+creator: TidGi User
+modified: 20231008104747344
+modifier: TidGi User
+tags: 技术分享
+title: linux安装clouddrive2
+
+这里以国内为掩饰。
+
+! 下载地址
+
+https://github.com/cloud-fs/cloud-fs.github.io/releases/
+
+下载最新版的
+
+
+```
+wget https://ghproxy.com/https://github.com/cloud-fs/cloud-fs.github.io/releases/download/v0.5.7/clouddrive-2-linux-x86_64-0.5.7.tgz
+```
+
+
+
+
+解压
+
+
+ 解压到当前目录
+
+
+
+```
+tar -xzf clouddrive-2-linux-x86_64-0.5.7
+```
+
+给权限
+
+```
+chmod -R 755 clouddrive-2-linux-x86_64-0.5.7
+```
+
+创建服务运行指令
+
+```
+vim /etc/systemd/system/clouddrive.service
+```
+编辑内容
+
+```
+[Unit]
+Description=CloudDrive 2
+After=network.target
+
+[Service]
+Type=exec
+Restart=on-failure
+ExecStart=/(上传的目录.../...)/clouddrive
+
+[Install]
+WantedBy=multi-user.target
+```
+(上传的目录.../...)这个是我们解压文件的位置
+
+保存。之后控制台执行：
+
+
+```
+systemctl daemon-reload
+```
+
+
+```
+systemctl start clouddrive.service
+```
+
+访问http://ip:19798/ 即可。
+
+
+```
+可选开机启动：systemctl enable clouddrive.service
+```
+
+
+卸载：
+
+```
+systemctl disable clouddrive.service
+```
+
+
+```
+systemctl stop clouddrive.service
+```
+
+
+```
+rm -f -r /(上传的目录.../...)
+```
+
+
+```
+rm -f -r /etc/systemd/system/clouddrive.service
+```
