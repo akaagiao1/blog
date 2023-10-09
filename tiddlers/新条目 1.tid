@@ -1,0 +1,22 @@
+created: 20231009151622050
+creator: TidGi User
+modified: 20231009151913929
+modifier: TidGi User
+tags: 
+title: 新条目 1
+
+
+```
+docker run -d \
+    --name clouddrive \
+    --restart unless-stopped \
+    --env CLOUDDRIVE_HOME=/Config \
+    -v /overlay/cloudnas:/CloudNAS:shared \
+    -v /overlay/config:/Config \
+    -v /overlay/share:/media:shared \
+    --network host \
+    --pid host \
+    --privileged \
+    --device /dev/fuse:/dev/fuse \
+    cloudnas/clouddrive2
+```
