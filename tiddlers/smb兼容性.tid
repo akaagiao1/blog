@@ -1,0 +1,63 @@
+created: 20231009161950218
+creator: TidGi User
+modified: 20231009162042327
+modifier: TidGi User
+tags: 技术分享
+title: smb兼容性
+
+在Ubuntu的Samba服务器中,可以通过在smb.conf配置文件中设置以下参数来启用强制同步I/O、macOS兼容共享和允许旧协议与身份验证:
+
+强制同步I/O
+在[global]部分添加:
+
+
+
+
+```
+strict sync = yes
+```
+
+这将强制SMB操作为同步I/O。
+
+启用macOS兼容共享
+在共享部分添加:
+
+
+
+
+```
+fruit:aapl = yes
+```
+
+这将启用Apple SMB扩展。
+
+允许旧协议与身份验证
+在[global]部分添加:
+
+
+
+
+```
+client min protocol = CORE
+server min protocol = CORE
+```
+
+这将最小协议级别设置为CORE,开启所有旧版本SMB协议。
+
+
+
+```
+
+ntlm auth = yes
+lanman auth = yes
+```
+
+这将启用weak ntlm和lanman身份验证。
+
+注意上述设置会降低安全性,请根据实际需要谨慎配置。
+
+每次修改配置后,都需要重启Samba服务以生效:
+
+
+
+sudo systemctl restart smbd
