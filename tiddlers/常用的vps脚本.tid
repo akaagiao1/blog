@@ -1,6 +1,6 @@
 created: 20230911024013868
 creator: 翟不止
-modified: 20230917155649195
+modified: 20231019150200470
 modifier: TidGi User
 tags: 技术分享
 title: 常用的vps脚本
@@ -25,3 +25,11 @@ wget -O tcpx.sh "https://github.com/ylx2016/Linux-NetSpeed/raw/master/tcpx.sh" &
 !!! 生成自己签名的证书
 
 `mkdir -p /root/hysteria && openssl ecparam -genkey -name prime256v1 -out /root/hysteria/private.key && openssl req -new -x509 -days 36500 -key /root/hysteria/private.key -out /root/hysteria/cert.pem -subj "/CN=bing.com"`
+
+
+!! TIKTOK解锁
+
+```
+wget -qO- https://github.com/yeahwu/check/raw/main/check.sh | bash
+```
+
