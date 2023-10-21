@@ -1,6 +1,6 @@
 created: 20230925150610511
 creator: TidGi User
-modified: 20231008104936059
+modified: 20231021132856019
 modifier: TidGi User
 tags: 技术分享
 title: 青蛇探针安装
@@ -24,3 +24,12 @@ bash <(curl -sL https://gitee.com/souying/serverMmon/raw/main/scripts/mmon_insta
 
 ```
 
+!! 备份
+
+
+```
+ /opt/serverMmon/dashboard/Mmon/basedata
+```
+
+
+目录下的文件就行了
