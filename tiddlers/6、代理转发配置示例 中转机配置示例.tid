@@ -1,0 +1,102 @@
+created: 20231029133441803
+creator: TidGi User
+modified: 20231029133454832
+modifier: TidGi User
+tags: sing-box服务端配置文件详解
+title: 6、代理转发配置示例 中转机配置示例
+
+
+
+```
+{
+"log": {
+"disabled": false,
+"level": "warn",
+"timestamp": true
+},
+"inbounds": [
+{
+  "type": "vless",
+  "tag": "vless-in",
+  "listen": "::",
+  "listen_port": 10010,
+  "users": [
+    {
+      "name": "sekai",
+      "uuid": "ffb0ea07-4537-4869-837a-bc8982431c20",
+      "flow": "xtls-rprx-vision"
+    }
+  ],
+  "tls": {
+    "enabled": true,
+    "server_name": "nijigen-works.jp",
+    "reality": {
+      "enabled": true,
+      "handshake": {
+        "server": "nijigen-works.jp",
+        "server_port": 443
+      },
+      "private_key": "KBdfrDPXwN1oQUsRyRcvegESIHC-aOxAxi9gVO16zlM",
+      "short_id": [
+        "0123456789abcd"
+      ]
+    }
+  }
+}
+],
+"outbounds": [
+{
+  "type": "direct",
+  "tag": "direct-out"
+},
+{
+  "type": "vless",
+  "tag": "vless-out",
+  "server": "5.5.5.5",
+  "server_port": 443,
+  "uuid": "bf000d23-0752-40b4-affe-68f7707a9661",
+  "flow": "xtls-rprx-vision",
+  "tls": {
+    "enabled": true,
+    "server_name": "www.apple.com",
+    "utls": {
+      "enabled": true,
+      "fingerprint": "chrome"
+    },
+    "reality": {
+      "enabled": true,
+      "public_key": "QPB1AnGKhIdD0P6NAXAA7ujB5j_mJK7jteeTIreylUc",
+      "short_id": "0123456789abcdef"
+    }
+  }
+}
+],
+"route": {
+"geoip": {
+  "download_url": "https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db",
+  "download_detour": "direct-out"
+},
+"geosite": {
+  "download_url": "https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db",
+  "download_detour": "direct-out"
+},
+"rules": [
+  {
+    "inbound": [
+      "vless-in"
+    ],
+    "geosite": [
+      "netflix"
+    ],
+    "outbound": "vless-out"
+  },
+  {
+    "inbound": [
+      "vless-in"
+    ],
+   "outbound": "direct-out"
+  }
+]
+}
+}
+```
