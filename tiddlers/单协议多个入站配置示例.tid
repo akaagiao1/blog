@@ -1,0 +1,135 @@
+created: 20231029132713086
+creator: TidGi User
+modified: 20231029132738662
+modifier: TidGi User
+tags: sing-box服务端配置文件详解
+title: 单协议多个入站配置示例
+
+
+```
+{
+  "log": {
+    "disabled": false,
+    "level": "warn",
+    "timestamp": true
+  },
+  "inbounds": [
+    {
+      "type": "naive",
+      "tag": "naive001-in",    //tag标签
+      "listen": "::",
+      "listen_port": 5353,
+      "users": [    //多用户结构
+        {
+          "username": "sekai",
+          "password": "password"
+        },
+        {
+          "username": "sekai",
+          "password": "password"
+        }
+      ],
+      "tls": {
+        "enabled": true,
+        "server_name": "",
+
+        ....以下为下载预编译版本的sing-box配置
+        "certificate_path": "",
+        "key_path": "",
+
+        ....以下为编译安装带ACME模块儿的sing-box配置
+        "acme": {
+
+          ....以下为使用质询端口申请证书的配置
+          "domain": [],
+          "data_directory": "",
+          "email": "",
+          "provider": "",
+
+          ....以下为使用CloudFlare API申请证书的配置，如果配置此部分则禁用质询端口申请证书的方法
+          "dns01_challenge": {
+            "provider": "cloudflare",
+            "api_token": ""
+          }
+        },
+        "ech": {
+          "enabled": false,
+          "pq_signature_schemes_enabled": false,
+          "dynamic_record_sizing_disabled": false,
+          "key": [],
+          "key_path": ""
+        }
+      }
+    },
+    {
+      "type": "naive",
+      "tag": "naive002-in",    //tag标签
+      "listen": "::",
+      "listen_port": 5354,
+      "users": [    //多用户结构
+        {
+          "username": "sekai",
+          "password": "password"
+        },
+        {
+          "username": "sekai",
+          "password": "password"
+        }
+      ],
+      "tls": {
+        "enabled": true,
+        "server_name": "",
+
+        ....以下为下载预编译版本的sing-box配置
+        "certificate_path": "",
+        "key_path": "",
+
+        ....以下为编译安装带ACME模块儿的sing-box配置
+        "acme": {
+
+          ....以下为使用质询端口申请证书的配置
+          "domain": [],
+          "data_directory": "",
+          "email": "",
+          "provider": "",
+
+          ....以下为使用CloudFlare API申请证书的配置，如果配置此部分则禁用质询端口申请证书的方法
+          "dns01_challenge": {
+            "provider": "cloudflare",
+            "api_token": ""
+          }
+        },
+        "ech": {
+          "enabled": false,
+          "pq_signature_schemes_enabled": false,
+          "dynamic_record_sizing_disabled": false,
+          "key": [],
+          "key_path": ""
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct-out"
+    }
+  ],
+  "route": {    //关键配置，影响共存
+    "rules": [
+      {
+        "inbound": [
+          "naive001-in"
+        ],
+       "outbound": "direct-out"
+      },
+      {
+        "inbound": [
+          "naive002-in"
+        ],
+       "outbound": "direct-out"
+      }
+    ]
+  }
+}
+```

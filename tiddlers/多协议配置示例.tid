@@ -1,0 +1,251 @@
+created: 20231029132803512
+creator: TidGi User
+modified: 20231029132822496
+modifier: TidGi User
+tags: sing-box服务端配置文件详解
+title: 多协议配置示例
+
+
+```
+{
+  "log": {
+    "disabled": false,
+    "level": "warn",
+    "timestamp": true
+  },
+  "inbounds": [
+    {
+      "type": "naive",
+      "tag": "naive-in",    //tag标签
+      "listen": "::",
+      "listen_port": 10010,
+      "users": [    //多用户结构
+        {
+          "username": "sekai",
+          "password": "password"
+        },
+        {
+          "username": "sekai",
+          "password": "password"
+        }
+      ],
+      "tls": {
+        "enabled": true,
+        "server_name": "",
+
+        ....以下为下载预编译版本的sing-box配置
+        "certificate_path": "",
+        "key_path": "",
+
+        ....以下为编译安装带ACME模块儿的sing-box配置
+        "acme": {
+
+          ....以下为使用质询端口申请证书的配置
+          "domain": [],
+          "data_directory": "",
+          "email": "",
+          "provider": "",
+
+          ....以下为使用CloudFlare API申请证书的配置，如果配置此部分则禁用质询端口申请证书的方法
+          "dns01_challenge": {
+            "provider": "cloudflare",
+            "api_token": ""
+          }
+        },
+        "ech": {
+          "enabled": false,
+          "pq_signature_schemes_enabled": false,
+          "dynamic_record_sizing_disabled": false,
+          "key": [],
+          "key_path": ""
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "vless-in",
+      "listen": "::",
+      "listen_port": 10011,
+      "users": [    //多用户结构
+        {
+          "name": "sekai",
+          "uuid": "bf000d23-0752-40b4-affe-68f7707a9661",
+          "flow": ""
+        },
+        {
+          "name": "sekai",
+          "uuid": "bf000d23-0752-40b4-affe-68f7707a9661",
+          "flow": ""
+        }
+      ],
+      "tls": {
+        "enabled": true,
+        "server_name": "",
+        "reality": {
+          "enabled": false,
+          "handshake": {
+            "server": "google.com",
+            "server_port": 443
+          },
+          "private_key": "UuMBgl7MXTPx9inmQp2UC7Jcnwc6XYbwDNebonM-FCc",
+          "short_id": [
+            "0123456789abcdef"
+          ]
+        }
+      },
+      "transport": {    //与VLESS+Vision+REALITY冲突
+
+        ....VLESS+H2C+REALITY配置
+        "type": "http"
+
+        ....VLESS+gRPC+REALITY配置
+        "type": "grpc",
+        "service_name": "TunService",
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "hy2-in",
+      "listen": "::",
+      "listen_port": 10012,
+      "up_mbps": 100,
+      "down_mbps": 100,
+      "obfs": {    //没有阻断现象不建议配置此项
+        "type": "salamander",
+        "password": "cry_me_a_r1ver"
+      },
+      "users": [    //多用户结构
+        {
+          "name": "tobyxdd",
+          "password": "goofy_ahh_password"
+        },
+        {
+          "name": "tobyxdd",
+          "password": "goofy_ahh_password"
+        }
+      ],
+      "ignore_client_bandwidth": false,
+      "tls": {
+        "enabled": true,
+        "server_name": "",
+
+        ....以下为下载预编译版本的sing-box配置
+        "certificate_path": "",
+        "key_path": "",
+
+        ....以下为编译安装带ACME模块儿的sing-box配置
+        "acme": {
+
+          ....以下为使用质询端口申请证书的配置
+          "domain": [],
+          "data_directory": "",
+          "email": "",
+          "provider": "",
+
+          ....以下为使用CloudFlare API申请证书的配置，如果配置此部分则禁用质询端口申请证书的方法
+          "dns01_challenge": {
+            "provider": "cloudflare",
+            "api_token": ""
+          }
+        },
+        "ech": {
+          "enabled": false,
+          "pq_signature_schemes_enabled": false,
+          "dynamic_record_sizing_disabled": false,
+          "key": [],
+          "key_path": ""
+        }
+      },
+      "masquerade": "",
+      "brutal_debug": false
+    },
+    {
+      "type": "tuic",
+      "tag": "tuic-in",
+      "listen": "::",
+      "listen_port": 10013,
+      "users": [    //多用户结构
+        {
+          "name": "sekai",
+          "uuid": "059032A9-7D40-4A96-9BB1-36823D848068",
+          "password": "hello"
+        },
+        {
+          "name": "sekai",
+          "uuid": "059032A9-7D40-4A96-9BB1-36823D848068",
+          "password": "hello"
+        }
+      ],
+      "congestion_control": "cubic",
+      "auth_timeout": "3s",
+      "zero_rtt_handshake": false,
+      "heartbeat": "10s",
+      "tls": {
+        "enabled": true,
+        "server_name": "",
+
+        ....以下为下载预编译版本的sing-box配置
+        "certificate_path": "",
+        "key_path": "",
+
+        ....以下为编译安装带ACME模块儿的sing-box配置
+        "acme": {
+
+          ....以下为使用质询端口申请证书的配置
+          "domain": [],
+          "data_directory": "",
+          "email": "",
+          "provider": "",
+
+          ....以下为使用CloudFlare API申请证书的配置，如果配置此部分则禁用质询端口申请证书的方法
+          "dns01_challenge": {
+            "provider": "cloudflare",
+            "api_token": ""
+          }
+        },
+        "ech": {
+          "enabled": false,
+          "pq_signature_schemes_enabled": false,
+          "dynamic_record_sizing_disabled": false,
+          "key": [],
+          "key_path": ""
+        }
+      }
+    }
+  ],    
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct-out"
+    }
+  ],
+  "route": {    //关键配置，影响共存
+    "rules": [
+      {
+        "inbound": [
+          "naive-in"
+        ],
+       "outbound": "direct-out"
+      },
+      {
+        "inbound": [
+          "vless-in"
+        ],
+       "outbound": "direct-out"
+      },
+      {
+        "inbound": [
+          "hy2-in"
+        ],
+       "outbound": "direct-out"
+      },
+      {
+        "inbound": [
+          "tuic-in"
+        ],
+       "outbound": "direct-out"
+      }
+    ]
+  }
+}
+```

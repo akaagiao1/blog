@@ -1,0 +1,132 @@
+created: 20231029132839461
+creator: TidGi User
+modified: 20231029132858645
+modifier: TidGi User
+tags: sing-box服务端配置文件详解
+title: 配置WireGuard解锁ChatGPT、Disney+、Netflix
+
+
+```
+{
+  "log": {
+    "disabled": false,
+    "level": "warn",
+    "timestamp": true
+  },
+  "inbounds": [
+    {
+      "type": "naive",
+      "tag": "naive-in",    //tag标签
+      "listen": "::",
+      "listen_port": 5353,
+      "sniff": true,
+      "sniff_override_destination": true,
+      "users": [    //多用户结构
+        {
+          "username": "sekai",
+          "password": "password"
+        },
+        {
+          "username": "sekai",
+          "password": "password"
+        }
+      ],
+      "tls": {
+        "enabled": true,
+        "server_name": "",
+
+        ....以下为下载预编译版本的sing-box配置
+        "certificate_path": "",
+        "key_path": "",
+
+        ....以下为编译安装带ACME模块儿的sing-box配置
+        "acme": {
+
+          ....以下为使用质询端口申请证书的配置
+          "domain": [],
+          "data_directory": "",
+          "email": "",
+          "provider": "",
+
+          ....以下为使用CloudFlare API申请证书的配置，如果配置此部分则禁用质询端口申请证书的方法
+          "dns01_challenge": {
+            "provider": "cloudflare",
+            "api_token": ""
+          }
+        },
+        "ech": {    //TLS扩展
+          "enabled": false,
+          "pq_signature_schemes_enabled": false,
+          "dynamic_record_sizing_disabled": false,
+          "key": [
+            "-----BEGIN ECH KEYS-----",
+            "ACDWNOCSEKWNgqmOOAwD9aLacYlpr9lrMk4KP7Ptoztf8gBX/g0AUwAAIAAgc7AK",
+            "RsgzRwW1lCk8+QV8unqlXy16Rw0AtS+mAfm6+wYACAABAAEAAQADACBbLS1wcS1z",
+            "aWduYXR1cmUtc2NoZW1lcy1lbmFibGVkXQAA",
+            "-----END ECH KEYS-----"
+          ],
+          "key_path": ""
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct-out"
+    },
+    {
+      "type": "direct",
+      "tag": "warp-out",
+      "detour": "wireguard-out",
+      "domain_strategy": "ipv6_only"    //如果你想使用IPV4解锁，设置为ipv4_only
+    },
+    {
+      "type": "wireguard",
+      "tag": "wireguard-out",
+      "server": "engage.cloudflareclient.com",
+      "server_port": 2408,
+      "system_interface": false,
+      "interface_name": "wg0",
+      "local_address": [
+        "172.16.0.2/32",
+        "2606:4700:110:813a:a352:3d11:af73:4782/128"
+      ],
+      "private_key": "SGHP3LIzGCzGZyS9I7LdNTY/EUkfQ3hKRWo19eJdbXY=",
+      "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1ARtzH0JuVo51h2wPfgyo=",
+      "reserved": [195,53,219],
+      "mtu": 1280
+    }
+  ],
+  "route": {    //关键配置，匹配ChatGPT、Disney+、Netflix的配置需放在第一位
+    "geoip": {
+      "download_url": "https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db",
+      "download_detour": "direct-out"
+    },
+    "geosite": {
+      "download_url": "https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db",
+      "download_detour": "direct-out"
+    },
+    "rules": [
+      {
+        "inbound": [
+          "naive-in"
+        ],
+        "geosite": [
+          "openai",
+          "netflix",
+          "disney"
+        ],
+        "outbound": "warp-out"
+      },
+      {
+        "inbound": [
+          "naive-in"
+        ],
+       "outbound": "direct"
+      }
+    ]
+  }
+}
+
+```

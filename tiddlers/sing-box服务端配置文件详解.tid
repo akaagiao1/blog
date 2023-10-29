@@ -1,0 +1,253 @@
+created: 20231029132554823
+creator: TidGi User
+modified: 20231029132711178
+modifier: TidGi User
+tags: 常见的singbox一件脚本
+title: sing-box服务端配置文件详解
+
+! 服务端各项配置详细介绍
+
+```
+{
+  "log": {
+    "disabled": false,   //设置为true的时候禁用日志
+    "level": "error",     //日志等级，建议设置为warn或error，只显示警告或错误信息
+    "output": "box.log",  //输出文件路径，没有特殊需求不建议配置
+    "timestamp": true     //给日志添加时间
+  },
+  "dns": {},  //服务端不建议配置此项
+  "inbounds": [   //入站配置，主要配置
+    {
+      "type": "vless",   //协议类型
+      "tag": "vless-in",,  //入站标签，可以自定义，用于区分不同的入站，主要用于配置多协议共存或者单协议多个入站
+      "network": "tcp",   //监听的网络协议，默认监听TCP和UDP，一般情况下默认即可，可丢弃配置
+      "listen": "::",    //监听地址，0.0.0.0代表监听本机IPV4地址，::代表监听本机IPV6地址
+      "listen_port": 5353,   //监听端口
+      "tcp_fast_open": false,   //如果启用TCP Fast Open时network需监听TCP，Linux 3.16开始默认开启TFO，主要优势在于减少了连接建立的往返时间，特别适用于需要大量短暂连接的场景，如网页浏览、应用程序更新等，它可以显著提高网络性能，减少用户感知的延迟
+      "tcp_multi_path": false,  //编译安装sing-box的话需要Go 1.21，启用TCP Multi Path时network 需监听TCP，可以提高连接的性能、可靠性和负载均衡，适用于多路径通信环境和需要高性能的应用程序
+      "udp_fragment": false,   //用于大型UDP数据包的分段和重组，对于音视频传输、在线游戏和其他需要低延迟但可以容忍丢包的应用程序非常有用，fragment是socks协议的一个特性，即被代理的UDP数据包超过了MTU大小，就分成多个数据包发送
+      "sniff": false,  //协议探测，检测传入数据流量的协议类型，并选择适当的传输方式，有助于绕过GFW审查和提高性能和稳定性，可以用于分流
+      "sniff_override_destination": false,   //用探测出的域名覆盖连接目标地址，将传入连接的目标地址修改为指定的目标地址，而不是原始的目标地址，允许选择性地将特定的流量路由通过不同的网络代理，以实现不同的网络访问需求
+      "sniff_timeout": "300ms",   //协议探测超时时间
+      "domain_strategy": "prefer_ipv6",    //请求的域名将在路由之前使用内置DNS服务器解析获取IP，解析出的IP地址与路由规则进行匹配，然后选择适当的路由，如果解析失败或解析的IP地址与路由规则不匹配，将继续按照配置的路由规则处理连接，如果sniff_override_destination生效，它的值将作为后备
+      "udp_timeout": 300,   //UDP NAT过期时间，需要组装UDP连接, 当前为Tun和Shadowsocks
+      "proxy_protocol": false,   //解析连接头中的代理协议，专用于传递请求的真实来源IP和端口，用于反代以及回落
+      "proxy_protocol_accept_no_header": false,    //接受没有代理协议标头的连接
+      "detour": "another-in"   //如果设置，连接将被转发到指定的入站，目标入站支持的协议类型：socks、http、shadowsocks、vmess、trojan、shadowtls、vless
+      "users": [
+        {
+          "name": "sekai",    //节点用户名
+          "uuid": "bf000d23-0752-40b4-affe-68f7707a9661",    //节点UUID
+          "flow": ""    //VLESS 子协议
+        }
+      ],
+      "tls": {
+        "enabled": true,    //true为启用TLS
+        "server_name": "",    //用于验证返回证书上的主机名，客户端在发起TLS握手时通常会发送一个SNI扩展，其中包含客户端期望连接的目标主机名，服务器可以使用这个SNI扩展来识别客户端请求的目标主机名，对于自签证书非常有用
+        "alpn": [],    //指定服务器支持的应用层协议列表，客户端在TLS握手过程中将从这个列表中选择一个协议，然后双方将在TLS连接上使用该协议进行通信，这允许客户端和服务器之间的明确协议选择，以确保它们都使用相同的协议
+        "min_version": "",    //可接受的最低TLS版本，客户端的最低为TLS 1.2，服务端最低为TLS 1.0，非必要配置
+        "max_version": "",    //可接受的最大TLS版本，当前最高版本为TLS 1.3，非必要配置
+        "cipher_suites": [],    //用于配置受支持的密码套件列表，正常情况下不影响安全性，在未配置的情况下自动选择，非必要配置
+        "certificate": [],    //字符串数组，填写你的证书内容，与certificate_path二选一
+        "certificate_path": "",    //证书文件路径，与certificate二选一
+        "key": [],    //字符串数组，填写你的密钥内容，与key_path二选一
+        "key_path": "",    //密钥文件路径，与key二选一
+        "acme": {    //sing-box自动申请与管理证书的配置部分
+          "domain": [],    //一组域名
+          "data_directory": "",    //ACME数据目录，可自定义ACME数据存放目录，方便找到证书文件
+          "default_server_name": "",    //若ServerName字段为空时，选择证书时要使用的服务器名称
+          "email": "",    // ACME服务器帐户使用的电子邮件地址
+          "provider": "",    // ACME CA供应商
+          "disable_http_challenge": false,    //禁用所有HTTP质询，HTTP质询的原理：ACME服务器向你的域名发送一个随机TOKEN ，你需要在你的Web服务器上创建一个相应的质询文件，以便ACME服务器能够获取到这个TOKEN ，当ACME服务器能够成功获取并验证TOKEN时，你的域名控制权就得到了验证，你将获得SSL/TLS证书，HTTP质询需要使用你的Web服务器已经配置的HTTP端口
+          "disable_tls_alpn_challenge": false,    //禁用所有TLS-ALPN质询，TLS-ALPN质询需要支持ALPN的服务器和客户端，并且需要根据ACME验证方法配置相应的证书和令牌来执行验证，这种方法通常用于获取通配符证书
+          "alternative_http_port": 0,    //ACME HTTP质询的备用端口，如果配置，将使用此端口而不是80来启动HTTP质询
+          "alternative_tls_port": 0,    //ACME TLS-ALPN 质询的备用端口，系统必须将443转发到此端口以使质询成功
+          "external_account": {    //EAB（外部帐户绑定）功能配置，允许CA和ACME客户端协商，将ACME帐户与其他已知帐户进行关联或绑定
+            "key_id": "",    //密钥标识符，用于唯一标识ACME帐户的标识符
+            "mac_key": ""    // MAC密钥，用于消息身份验证和数据完整性保护的密钥
+          },
+          "dns01_challenge": {    //ACME DNS01 验证字段，如果配置，将禁用其他验证方法，好处在于不再需要使用80或者443端口来质询从而完成证书的申请
+            "provider": "cloudflare",    // DNS 提供商配置,如需详细了解请查看acme.sh官方文档
+            "api_token": ""    //DNS API，你CloudFlare账户的API令牌
+          }
+        },
+        "ech": {    //一个 TLS 扩展，它允许客户端加密其ClientHello的第一部分信息，从而隐藏握手期间的信息，特别是隐藏SNI信息，这有助于提高用户的隐私和减少中间人攻击的风险
+          "enabled": false,    //若要开启请设置为true
+          "pq_signature_schemes_enabled": false,    //启用对后量子对等证书签名方案的支持的主要目的是为了提高加密通信的长期安全性，后量子密码学是一种加密算法，被设计为能够抵抗未来可能出现的量子计算攻击
+          "dynamic_record_sizing_disabled": false,    //如果为true，则始终使用最大可能的TLS记录大小， 如果为false，则可能会调整TLS记录的大小以尝试改善延迟
+          "key": [    //ECH PEM密钥行数组，字符串数组
+            "-----BEGIN ECH KEYS-----",
+            "ACDWNOCSEKWNgqmOOAwD9aLacYlpr9lrMk4KP7Ptoztf8gBX/g0AUwAAIAAgc7AK",
+            "RsgzRwW1lCk8+QV8unqlXy16Rw0AtS+mAfm6+wYACAABAAEAAQADACBbLS1wcS1z",
+            "aWduYXR1cmUtc2NoZW1lcy1lbmFibGVkXQAA",
+            "-----END ECH KEYS-----"
+          ],
+          "key_path": ""    //ECH PEM密钥路径
+        },
+        "reality": {    //Reality配置
+          "enabled": false,    //true为启用Reality
+          "handshake": {
+            "server": "google.com",    //握手服务器地址，国外网站，支持TLSv1.3与H2
+            "server_port": 443    //握手服务器端口
+          },
+          "private_key": "UuMBgl7MXTPx9inmQp2UC7Jcnwc6XYbwDNebonM-FCc",    //私钥
+          "short_id": [    //客户端可用的shortId列表，可用于区分不同的客户端
+            "0123456789abcdef"    //一个零到八位的十六进制字符串
+          ],
+          "max_time_difference": "1m"    //服务器与和客户端之间允许的最大时间差，默认禁用检查
+        }
+      },
+      "transport": {    //V2Ray 传输层配置
+        ....HTTP传输层配置
+        "type": "http",    //传输协议，HTTP包含纯HTTP以及HTTP2
+        "host": [],    //主机域名列表，客户端会随机从列表中选出一个域名进行通信，服务器会验证域名是否在列表中
+        "path": "",    //HTTP 请求路径，客户端和服务器必须一致
+        "method": "",    //HTTP请求方法，有 PUT、POST、OPTIONS、HEAD、GET、DELETE、CONNECT
+        "headers": {    //HTTP请求的额外标头
+          "Header": [
+            "value"    //一个键值对，每个键表示一个HTTP头名称
+          ]
+        },
+        "idle_timeout": "15s",    //在HTTP2服务器中,如果连接上没有收到任何帧，指定一段时间后将使用 PING 帧执行健康检查。需要注意的是，PING响应被视为已接收的帧，因此如果连接上没有其他流量，则健康检查将在每个间隔执行一次，如果值为零，则不会执行健康检查
+        "ping_timeout": "15s"    //在HTTP2客户端中,指定发送PING帧后，在指定的超时时间内必须接收到响应，如果在指定的超时时间内没有收到PING帧的响应，则连接将关闭，默认超时持续时间为 15 秒
+
+        ....WebSocket传输层配置
+        "type": "ws",    //传输协议
+        "path": "",    //HTTP请求路径
+        "headers": {    //HTTP请求的额外标头
+          "Host": "bing.com"    //一个键值对，每个键表示一个HTTP头的名称
+        },
+        "max_early_data": 0,    //请求中允许的最大有效负载大小，默认启用
+        "early_data_header_name": ""    //早期数据在路径而不是标头中发送，要与Xray-core兼容，请将其设置为Sec-WebSocket-Protocol，需要与服务器保持一致
+
+        ....QUIC传输层配置
+        "type": "quic"    //传输协议
+
+        ....gRPC传输层配置
+        "type": "grpc",    //传输协议
+        "service_name": "TunService",    //gRPC服务名称，客户端会使用此名称进行通信，服务端会验证服务名称是否匹配
+        "idle_timeout": "15s",    //在标准gRPC服务器/客户端，如果传输在此时间段后没有看到任何活动，它会向客户端发送ping请求以检查连接是否仍然活动；在默认gRPC服务器/客户端，它的行为与HTTP传输层中的相应设置相同
+        "ping_timeout": "15s",    //在标准gRPC服务器/客户端，经过一段时间之后，客户端将执行keepalive检查并等待活动，如果没有检测到任何活动，则会关闭连接；在默认gRPC服务器/客户端，它的行为与HTTP传输层中的相应设置相同
+        "permit_without_stream": false    //在标准gRPC客户端，如果启用，客户端传输即使没有活动连接也会发送keepalive ping；如果禁用，则在没有活动连接时，将忽略idle_timeout和ping_timeout，并且不会发送keepalive ping
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",    //向任意网络发送TCP或UDP数据
+      "tag": "direct-in"    //出站标签
+    },
+    {
+      "type": "block",    //关闭所有传入请求
+      "tag": "block"    //出站标签
+    }
+  ],
+  "route": {    //路由规则配置，匹配逻辑:domain || domain_suffix || domain_keyword || domain_regex || geosite || geoip || ip_cidr && port || port_range && source_geoip || source_ip_cidr && source_port || source_port_range && other fields
+    "geoip": {    //GeoIP配置
+      "path": "",    //GeoIP资源的路径
+      "download_url": "",    //GeoIP资源的下载链接
+      "download_detour": ""    //用于下载GeoIP资源的出站的标签，如果为空，将使用默认出站
+    },
+    "geosite": {    //Geosite配置
+      "path": "",    //GeoSite 资源的路径
+      "download_url": "",    //GeoSite资源的下载链接
+      "download_detour": ""    //用于下载GeoSite资源的出站的标签，如果为空，将使用默认出站
+    },
+    "rules": [
+      {
+        "inbound": [
+          "mixed-in"    //入站标签，对应inbounds里的tag值，多协议共存或者单协议多个入站时需要配置
+        ],
+        "ip_version": 6,    //IPV4或IPV6 ，默认不限制
+        "network": [
+          "tcp"    //网络协议，tcp或udp
+        ],
+        "auth_user": [    //认证用户名
+          "usera",    //入站配置里的name值
+          "userb"    //入站配置里的name值
+        ],
+        "protocol": [    //探测到的协议
+          "tls",
+          "http",
+          "quic"
+        ],
+        "domain": [    //匹配完整域名
+          "test.com"
+        ],
+        "domain_suffix": [    //匹配域名后缀
+          ".cn"
+        ],
+        "domain_keyword": [    //匹配域名关键字
+          "test"
+        ],
+        "domain_regex": [    //匹配域名正则表达式
+          "^stun\\..+"
+        ],
+        "geosite": [    //匹配GeoSite
+          "cn"
+        ],
+        "source_geoip": [    //匹配源GeoIP，根据流量的源IP地址的地理位置信息来做出决策
+          "private"
+        ],
+        "geoip": [    //匹配GeoIP，根据目标IP地址的地理位置信息来做出决策
+          "cn"
+        ],
+        "source_ip_cidr": [    //匹配源IP CIDR，用于确定来自特定源IP地址范围的流量
+          "10.0.0.0/24"
+        ],
+        "ip_cidr": [    //匹配IP CIDR，用于确定目标IP地址范围的流量
+          "10.0.0.0/24"
+        ],
+        "source_port": [    //匹配源端口，用于确定网络数据包的源端口是否符合规定的条件
+          12345
+        ],
+        "source_port_range": [    //匹配源端口范围，用于确定流量的源端口范围
+          "1000:2000",
+          ":3000",
+          "4000:"
+        ],
+        "port": [    //匹配端口，用于确定网络数据包的目标端口是否符合规定的条件
+          80,
+          443
+        ],
+        "port_range": [    //匹配端口范围，用于确定流量的目标端口范围
+          "1000:2000",
+          ":3000",
+          "4000:"
+        ],
+        "process_name": [    //匹配进程名称，仅支持Linux、Windows和macOS
+          "curl"
+        ],
+        "process_path": [    //匹配进程路径，仅支持Linux、Windows和macOS
+          "/usr/bin/curl"
+        ],
+        "package_name": [    //匹配Android应用包名
+          "com.termux"
+        ],
+        "user": [    //匹配用户名，仅支持Linux
+          "sekai"
+        ],
+        "user_id": [    //匹配用户ID，仅支持Linux
+          1000
+        ],
+        "clash_mode": "direct",    //匹配Clash模式
+        "invert": false,    //反选匹配结果
+        "outbound": "direct"    //目标出站的标签，对应outbounds里的tag值，多协议共存或者单协议多个入站时需要配置
+      },
+      {
+        "type": "logical",    //逻辑规则，用于指定多个子规则之间的逻辑关系
+        "mode": "and",    //逻辑关系的模式，这里是and表示所有的子规则必须满足条件，如果模式是or则表示只需满足其中一个子规则即可
+        "rules": [],    //一个包含子规则的数组
+        "invert": false,    //反选匹配结果
+        "outbound": "direct"    //目标出站的标签，对应outbounds里的tag值
+      }
+    ],
+    "final": "",    //默认出站标签，若为空，将使用第一个协议出站
+    "auto_detect_interface": false,    //默认将出站连接绑定到默认网卡，以防止在tun下出现路由环路，如果设置了outbound.bind_interface，则不生效
+    "override_android_vpn": false,    //启用auto_detect_interface时接受Android VPN作为上游网卡，仅支持Android
+    "default_interface": "en0",    //默认将出站连接绑定到指定网卡，以防止在tun下出现路由环路，如果设置了auto_detect_interface，则不生效
+    "default_mark": 233    //默认为出站连接设置路由标记，如果设置了outbound.routing_mark，则不生效
+  },
+  "experimental": {}    //服务端不建议配置此项
+}
+```
