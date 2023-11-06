@@ -1,0 +1,319 @@
+created: 20231106020821431
+creator: 翟不止
+modified: 20231106044905909
+modifier: 翟不止
+tags: 技术分享
+title: 斐讯n1刷armbian利用sing-box做透明代理
+
+首先刷n1 具体刷机步骤我就不演示了，这个是n1的armbian
+
+下载地址
+
+https://github.com/ophub/amlogic-s9xxx-armbian
+
+准备工具
+
+ssh链接工具  我用的termius   （主要是可以直接给文件权限不需要输入代码）
+
+下载sing-box
+
+https://github.com/SagerNet/sing-box/releases
+
+下载arm64 linux的版本的解压利用sftp上传  到/usr/local/bin 并且重命名为sing-box
+编辑自启动选项
+vim
+
+
+```
+[Unit]
+Description=sing-box service
+Documentation=https://sing-box.sagernet.org
+After=network.target nss-lookup.target
+
+[Service]
+User=root
+WorkingDirectory=/usr/local/share/sing-box
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
+ExecStart=/usr/local/bin/sing-box run -c /usr/local/etc/sing-box/config.json
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=infinity
+
+[Install]
+WantedBy=multi-user.target
+
+```
+
+
+ExecStart 就是sing-box启动命令 注意文件位置
+
+接着编辑配置文件
+
+
+```
+vim /usr/local/etc/sing-box/config.json
+```
+
+
+```
+{
+    "log":{
+        "level":"debug",
+        "timestamp":true
+    },
+    "dns":{
+        "servers":[
+            {
+                "tag":"google",
+                "address":"tls://8.8.8.8"
+            },
+            {
+                "tag":"local",
+                "address":"223.5.5.5",
+                "detour":"direct"
+            },
+            {
+                "tag":"remote",
+                "address":"fakeip"
+            },
+            {
+                "tag":"block",
+                "address":"rcode://success"
+            }
+        ],
+        "rules":[
+            {
+                "geosite":"category-ads-all",
+                "server":"block",
+                "disable_cache":true
+            },
+            {
+                "outbound":"any",
+                "server":"local"
+            },
+            {
+                "geosite":"cn",
+                "server":"local"
+            },
+            {
+                "query_type":[
+                    "A",
+                    "AAAA"
+                ],
+                "server":"remote"
+            }
+        ],
+        "fakeip":{
+            "enabled":true,
+            "inet4_range":"198.18.0.0/15",
+            "inet6_range":"fc00::/18"
+        },
+        "independent_cache":true,
+        "strategy":"ipv4_only"
+    },
+    "inbounds":[
+        {
+            "type":"tun",
+            "inet4_address":"172.19.0.1/30",
+            "mtu":9000,
+            "auto_route":true,
+            "strict_route":true,
+            "sniff":true,
+            "endpoint_independent_nat":false,
+            "stack":"system",
+            "platform":{
+                "http_proxy":{
+                    "enabled":true,
+                    "server":"127.0.0.1",
+                    "server_port":2080
+                }
+            }
+        },
+        {
+            "type":"mixed",
+            "listen":"127.0.0.1",
+            "listen_port":2080,
+            "sniff":true,
+            "users":[
+
+            ]
+        }
+    ],
+    "outbounds":[
+//你的节点
+        {
+            "tag":"proxy",
+            "type":"selector",
+            "outbounds":[
+                "HKB-NAT",
+                "NNC-HK",
+                "AKILE-TW",
+                "REALITY-LA-9929",
+                "REALITY-JP-BWG"
+            ],
+            "default":"REALITY-LA-9929",
+            "interrupt_exist_connections":false
+        },
+        {
+            "tag":"🤖 OpenAI",
+            "type":"selector",
+            "outbounds":[
+                "direct",
+                "REALITY-LA-9929"
+            ]
+        },
+        {
+            "tag":"🎬 Disney",
+            "type":"urltest",
+            "outbounds":[
+                "HKB-NAT",
+                "NNC-HK"
+            ],
+            "url":"https://www.gstatic.com/generate_204",
+            "interval":"1m",
+            "tolerance":2000
+        },
+        {
+            "tag":"🎬 MediaVideo",
+            "type":"urltest",
+            "outbounds":[
+                "AKILE-TW",
+                "HKB-NAT"
+            ],
+            "url":"https://www.gstatic.com/generate_204",
+            "interval":"1m",
+            "tolerance":2000
+        },
+        {
+            "type":"direct",
+            "tag":"direct"
+        },
+        {
+            "type":"dns",
+            "tag":"dns-out"
+        },
+        {
+            "type":"block",
+            "tag":"block"
+        }
+    ],
+    "route":{
+        "auto_detect_interface":true,
+        "final":"proxy",
+        "geoip":{
+            "download_url":"https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.db",
+            "download_detour":"proxy"
+        },
+        "geosite":{
+            "download_url":"https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.db",
+            "download_detour":"proxy"
+        },
+        "rules":[
+            {
+                "protocol":"dns",
+                "outbound":"dns-out"
+            },
+            {
+                "network":"udp",
+                "port":443,
+                "outbound":"block"
+            },
+            {
+                "geosite":"category-ads-all",
+                "outbound":"block"
+            },
+            {
+                "clash_mode":"direct",
+                "outbound":"direct"
+            },
+            {
+                "clash_mode":"global",
+                "outbound":"proxy"
+            },
+            {
+                "domain":[
+                    "clash.razord.top",
+                    "yacd.metacubex.one",
+                    "yacd.haishan.me",
+                    "d.metacubex.one",
+                    "new.cargoware.com"
+                ],
+                "outbound":"direct"
+            },
+            {
+                "geosite":"openai",
+                "domain_keyword":"claude",
+                "outbound":"🤖 OpenAI"
+            },
+            {
+                "geosite":"apple",
+                "outbound":"direct"
+            },
+            {
+                "geosite":"apple-cn",
+                "outbound":"direct"
+            },
+            {
+                "geosite":"bilibili",
+                "outbound":"direct"
+            },
+            {
+                "geosite":"disney",
+                "outbound":"🎬 Disney"
+            },
+            {
+                "geoip":"netflix",
+                "outbound":"🎬 MediaVideo"
+            },
+            {
+                "geosite":[
+                    "tiktok",
+                    "netflix",
+                    "hbo",
+                    "primevideo"
+                ],
+                "outbound":"🎬 MediaVideo"
+            },
+            {
+                "geosite":[
+                    "apple@cn",
+                    "category-games@cn",
+                    "cn",
+                    "private"
+                ],
+                "geoip":[
+                    "cn",
+                    "private"
+                ],
+                "outbound":"direct"
+            }
+        ]
+    },
+    "experimental":{
+        "clash_api":{
+            "external_controller":"0.0.0.0:9090",
+            "external_ui_download_url":"",
+            "external_ui_download_detour":"",
+            "external_ui":"ui",
+            "secret":"",
+            "default_mode":"rule",
+            "store_selected":true,
+            "cache_file":"",
+            "cache_id":""
+        }
+    }
+}
+```
+
+按esc，:wq 保存退出
+
+接着启动sing-box
+
+
+```
+systemctl enable sing-box&&systemctl stop sing-box&&systemctl restart sing-box&&systemctl status sing-box
+```
+
+之后把需要科学上网的设备路由器网关改成你的n1 IP地址就行
