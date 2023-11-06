@@ -1,0 +1,42 @@
+created: 20231106045428606
+creator: 翟不止
+modified: 20231106050331795
+modifier: 翟不止
+tags: 常见的singbox一件脚本 sing-box
+title: sing-box自启动设置
+
+```
+[Unit]
+Description=sing-box service
+Documentation=https://sing-box.sagernet.org
+After=network.target nss-lookup.target
+
+[Service]
+User=root
+WorkingDirectory=/usr/local/share/sing-box
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
+ExecStart=/usr/local/bin/sing-box run -c /usr/local/etc/sing-box/config.json
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=infinity
+
+[Install]
+WantedBy=multi-user.target
+
+```
+
+!! 其中
+ExecStart就是sing-box启动命令 
+
+注意文件的位置
+
+
+```
+/usr/local/bin/sing-box run -c /usr/local/etc/sing-box/config.json
+```
+
+就是sing-box的命令 启动位于/usr/local/bin的 配置文件位于 
+
+/usr/local/etc/sing-box 可自由修改发挥
